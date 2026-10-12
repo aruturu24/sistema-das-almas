@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.Python
+.env
+.venv/
+venv/
+
+# Material de terceiros / não publicar
+dd-5e-livro-do-jogador-fundo-branco-biblioteca-elfica.pdf

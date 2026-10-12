@@ -1,0 +1,494 @@
+/* Sistema das Almas — Livro do Jogador (print / PDF) */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap");
+
+:root {
+  --ink: #1a1510;
+  --ink-soft: #3a2f26;
+  --muted: #6e5f4f;
+  --paper: #f4ead8;
+  --paper-deep: #e8dcc6;
+  --rule: #9a7b4f;
+  --accent: #6a3424;
+  --accent-soft: #a67c52;
+  --gold: #c4a35a;
+  --callout-bg: #ebe0cb;
+  --table-head: #d4c2a0;
+  --example-edge: #3f6b45;
+  --nota-edge: #6a3424;
+  --regra-edge: #3a4f6e;
+  --shadow: rgba(40, 28, 16, 0.12);
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@page :first {
+  margin: 0;
+}
+
+html {
+  font-size: 10.75pt;
+}
+
+body {
+  font-family: "Source Serif 4", "Palatino Linotype", Palatino, Georgia, serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Cover ── */
+.cover {
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  overflow: hidden;
+  background: #1a1510;
+  color: #f4ead8;
+}
+
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.cover-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 12, 8, 0.55) 0%, rgba(18, 12, 8, 0.15) 38%, rgba(18, 12, 8, 0.35) 62%, rgba(12, 8, 5, 0.88) 100%);
+}
+
+.cover-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18mm 16mm 22mm;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cover-kicker {
+  font-family: Cinzel, serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.cover h1 {
+  font-family: Cinzel, serif;
+  font-weight: 900;
+  font-size: 2.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f8f0e0;
+  border: none;
+  margin: 0 0 0.35em;
+  padding: 0;
+  page-break-before: avoid;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+.cover .cover-subtitle {
+  font-family: Cinzel, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6d3b0;
+  margin: 0 0 1.1rem;
+  border: none;
+}
+
+.cover-rule {
+  width: 7rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 1rem;
+}
+
+.cover-tag {
+  font-size: 0.95rem;
+  color: #d8c7a8;
+  font-style: italic;
+  margin: 0 0 0.35rem;
+}
+
+.cover-edition {
+  font-family: Cinzel, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.8rem;
+}
+
+/* ── Interior frames ── */
+.book-frame {
+  max-width: 170mm;
+  margin: 0 auto;
+  padding: 12mm 18mm 18mm;
+  box-sizing: border-box;
+}
+
+@media screen {
+  .book-frame {
+    padding: 24px 20px 48px;
+  }
+  .cover {
+    width: min(100%, 420px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    margin: 0 auto 2rem;
+  }
+}
+
+.ornament {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin: 0.4rem auto 1rem;
+  opacity: 0.92;
+}
+
+.figure {
+  margin: 1.1rem 0 1.35rem;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  max-height: 95mm;
+  object-fit: cover;
+  border: 1px solid rgba(154, 123, 79, 0.55);
+  box-shadow: 0 4px 14px var(--shadow);
+}
+
+.figure figcaption {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: Cinzel, "Times New Roman", serif;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 1.55rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  margin: 1.4em 0 0.35em;
+  page-break-before: always;
+  color: var(--accent);
+}
+
+h1.part-title {
+  page-break-before: always;
+  padding-top: 35vh;
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+}
+
+h1 .chap-label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  margin-bottom: 0.45rem;
+  font-weight: 500;
+}
+
+h1:first-of-type {
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin: 1.45em 0 0.5em;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(154, 123, 79, 0.4);
+  padding-bottom: 0.22em;
+}
+
+h3 {
+  font-size: 1.02rem;
+  margin: 1.2em 0 0.4em;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 0.95rem;
+  margin: 1em 0 0.3em;
+  color: var(--accent-soft);
+}
+
+p {
+  margin: 0 0 0.72em;
+  text-align: justify;
+  hyphens: auto;
+  orphans: 3;
+  widows: 3;
+}
+
+.lead {
+  font-size: 1.05em;
+  color: var(--ink-soft);
+}
+
+ul, ol {
+  margin: 0 0 0.9em 1.15em;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.28em;
+}
+
+strong { font-weight: 700; color: var(--ink); }
+em { font-style: italic; }
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.88em;
+  background: var(--paper-deep);
+  padding: 0.05em 0.28em;
+  border-radius: 2px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.6em auto;
+  width: 40%;
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+.toc {
+  columns: 1;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.toc-section {
+  margin: 1rem 0 0.35rem;
+  font-family: Cinzel, serif;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.toc ol {
+  list-style: none;
+  margin-left: 0;
+}
+
+.toc li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px dotted rgba(154, 123, 79, 0.45);
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.pagebreak {
+  page-break-after: always;
+  break-after: page;
+  height: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.55em 0 1.05em;
+  font-size: 0.9em;
+  page-break-inside: avoid;
+  background: rgba(255, 252, 245, 0.55);
+}
+
+thead { display: table-header-group; }
+
+th {
+  background: linear-gradient(180deg, #ddc9a4, var(--table-head));
+  color: var(--ink);
+  font-family: Cinzel, serif;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.42em 0.5em;
+  border-bottom: 2px solid var(--rule);
+}
+
+td {
+  padding: 0.34em 0.5em;
+  border-bottom: 1px solid rgba(154, 123, 79, 0.28);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: rgba(232, 220, 198, 0.4);
+}
+
+/* Callouts */
+.regra, .exemplo, .nota {
+  background: var(--callout-bg);
+  border: 1px solid rgba(154, 123, 79, 0.35);
+  border-left: 4px solid var(--regra-edge);
+  padding: 0.7em 0.95em;
+  margin: 1em 0;
+  font-size: 0.94em;
+  page-break-inside: avoid;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset;
+}
+
+.exemplo { border-left-color: var(--example-edge); }
+.nota { border-left-color: var(--nota-edge); }
+
+.regra p:last-child,
+.exemplo p:last-child,
+.nota p:last-child { margin-bottom: 0; }
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.pillar-card {
+  border: 1px solid rgba(154, 123, 79, 0.45);
+  background: rgba(255, 252, 245, 0.65);
+  padding: 0.75rem 0.9rem;
+  page-break-inside: avoid;
+}
+
+.pillar-card h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  color: var(--accent);
+  border: none;
+}
+
+/* Skill tree print (Cap. 3) */
+.skill-tree-print {
+  margin: 0.6em 0 1.1em;
+  padding: 0.65em 0.75em;
+  border: 1px solid rgba(154, 123, 79, 0.45);
+  background: rgba(255, 252, 245, 0.7);
+  page-break-inside: avoid;
+  font-size: 0.86em;
+}
+
+.skill-tree-print .stp-node {
+  border: 1px solid rgba(154, 123, 79, 0.4);
+  background: #fffaf0;
+  padding: 0.35em 0.55em;
+  margin: 0.15em 0;
+  border-radius: 2px;
+}
+
+.skill-tree-print .stp-root {
+  border-color: var(--accent);
+  border-width: 1.5px;
+  background: linear-gradient(180deg, #f3e6cf, #fffaf0);
+}
+
+.skill-tree-print .stp-name {
+  font-family: Cinzel, serif;
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.skill-tree-print .stp-meta {
+  font-size: 0.82em;
+  color: var(--muted);
+  margin-top: 0.1em;
+}
+
+.skill-tree-print .stp-detail {
+  font-size: 0.88em;
+  color: var(--ink-soft);
+  margin-top: 0.15em;
+  line-height: 1.35;
+}
+
+.skill-tree-print .stp-children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55em 0.7em;
+  margin: 0.45em 0 0 0.85em;
+  padding-left: 0.65em;
+  border-left: 2px solid rgba(154, 123, 79, 0.55);
+}
+
+.skill-tree-print .stp-branch {
+  flex: 1 1 11rem;
+  min-width: 9.5rem;
+  max-width: 100%;
+  position: relative;
+}
+
+.skill-tree-print .stp-branch::before {
+  content: "";
+  position: absolute;
+  left: -0.65em;
+  top: 0.85em;
+  width: 0.55em;
+  border-top: 2px solid rgba(154, 123, 79, 0.55);
+}
+
+.skill-tree-print .stp-branch .stp-children {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border-left-color: rgba(154, 123, 79, 0.35);
+}
+
+.skill-tree-print .stp-branch .stp-branch {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media print {
+  body { background: var(--paper); }
+  a { color: inherit; }
+  .cover { width: auto; height: auto; min-height: 100vh; }
+}

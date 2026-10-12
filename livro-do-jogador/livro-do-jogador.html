@@ -1,0 +1,2630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<title>Sistema das Almas — Livro do Jogador</title>
+<style>
+/* Sistema das Almas — Livro do Jogador (print / PDF) */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap");
+
+:root {
+  --ink: #1a1510;
+  --ink-soft: #3a2f26;
+  --muted: #6e5f4f;
+  --paper: #f4ead8;
+  --paper-deep: #e8dcc6;
+  --rule: #9a7b4f;
+  --accent: #6a3424;
+  --accent-soft: #a67c52;
+  --gold: #c4a35a;
+  --callout-bg: #ebe0cb;
+  --table-head: #d4c2a0;
+  --example-edge: #3f6b45;
+  --nota-edge: #6a3424;
+  --regra-edge: #3a4f6e;
+  --shadow: rgba(40, 28, 16, 0.12);
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@page :first {
+  margin: 0;
+}
+
+html {
+  font-size: 10.75pt;
+}
+
+body {
+  font-family: "Source Serif 4", "Palatino Linotype", Palatino, Georgia, serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Cover ── */
+.cover {
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  overflow: hidden;
+  background: #1a1510;
+  color: #f4ead8;
+}
+
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.cover-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 12, 8, 0.55) 0%, rgba(18, 12, 8, 0.15) 38%, rgba(18, 12, 8, 0.35) 62%, rgba(12, 8, 5, 0.88) 100%);
+}
+
+.cover-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18mm 16mm 22mm;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cover-kicker {
+  font-family: Cinzel, serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.cover h1 {
+  font-family: Cinzel, serif;
+  font-weight: 900;
+  font-size: 2.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f8f0e0;
+  border: none;
+  margin: 0 0 0.35em;
+  padding: 0;
+  page-break-before: avoid;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+.cover .cover-subtitle {
+  font-family: Cinzel, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e6d3b0;
+  margin: 0 0 1.1rem;
+  border: none;
+}
+
+.cover-rule {
+  width: 7rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 1rem;
+}
+
+.cover-tag {
+  font-size: 0.95rem;
+  color: #d8c7a8;
+  font-style: italic;
+  margin: 0 0 0.35rem;
+}
+
+.cover-edition {
+  font-family: Cinzel, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.8rem;
+}
+
+/* ── Interior frames ── */
+.book-frame {
+  max-width: 170mm;
+  margin: 0 auto;
+  padding: 12mm 18mm 18mm;
+  box-sizing: border-box;
+}
+
+@media screen {
+  .book-frame {
+    padding: 24px 20px 48px;
+  }
+  .cover {
+    width: min(100%, 420px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    margin: 0 auto 2rem;
+  }
+}
+
+.ornament {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin: 0.4rem auto 1rem;
+  opacity: 0.92;
+}
+
+.figure {
+  margin: 1.1rem 0 1.35rem;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  max-height: 95mm;
+  object-fit: cover;
+  border: 1px solid rgba(154, 123, 79, 0.55);
+  box-shadow: 0 4px 14px var(--shadow);
+}
+
+.figure figcaption {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: Cinzel, "Times New Roman", serif;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 1.55rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  margin: 1.4em 0 0.35em;
+  page-break-before: always;
+  color: var(--accent);
+}
+
+h1.part-title {
+  page-break-before: always;
+  padding-top: 35vh;
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+}
+
+h1 .chap-label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  margin-bottom: 0.45rem;
+  font-weight: 500;
+}
+
+h1:first-of-type {
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin: 1.45em 0 0.5em;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(154, 123, 79, 0.4);
+  padding-bottom: 0.22em;
+}
+
+h3 {
+  font-size: 1.02rem;
+  margin: 1.2em 0 0.4em;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 0.95rem;
+  margin: 1em 0 0.3em;
+  color: var(--accent-soft);
+}
+
+p {
+  margin: 0 0 0.72em;
+  text-align: justify;
+  hyphens: auto;
+  orphans: 3;
+  widows: 3;
+}
+
+.lead {
+  font-size: 1.05em;
+  color: var(--ink-soft);
+}
+
+ul, ol {
+  margin: 0 0 0.9em 1.15em;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.28em;
+}
+
+strong { font-weight: 700; color: var(--ink); }
+em { font-style: italic; }
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.88em;
+  background: var(--paper-deep);
+  padding: 0.05em 0.28em;
+  border-radius: 2px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.6em auto;
+  width: 40%;
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+.toc {
+  columns: 1;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.toc-section {
+  margin: 1rem 0 0.35rem;
+  font-family: Cinzel, serif;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.toc ol {
+  list-style: none;
+  margin-left: 0;
+}
+
+.toc li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px dotted rgba(154, 123, 79, 0.45);
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.pagebreak {
+  page-break-after: always;
+  break-after: page;
+  height: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.55em 0 1.05em;
+  font-size: 0.9em;
+  page-break-inside: avoid;
+  background: rgba(255, 252, 245, 0.55);
+}
+
+thead { display: table-header-group; }
+
+th {
+  background: linear-gradient(180deg, #ddc9a4, var(--table-head));
+  color: var(--ink);
+  font-family: Cinzel, serif;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.42em 0.5em;
+  border-bottom: 2px solid var(--rule);
+}
+
+td {
+  padding: 0.34em 0.5em;
+  border-bottom: 1px solid rgba(154, 123, 79, 0.28);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: rgba(232, 220, 198, 0.4);
+}
+
+/* Callouts */
+.regra, .exemplo, .nota {
+  background: var(--callout-bg);
+  border: 1px solid rgba(154, 123, 79, 0.35);
+  border-left: 4px solid var(--regra-edge);
+  padding: 0.7em 0.95em;
+  margin: 1em 0;
+  font-size: 0.94em;
+  page-break-inside: avoid;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset;
+}
+
+.exemplo { border-left-color: var(--example-edge); }
+.nota { border-left-color: var(--nota-edge); }
+
+.regra p:last-child,
+.exemplo p:last-child,
+.nota p:last-child { margin-bottom: 0; }
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.pillar-card {
+  border: 1px solid rgba(154, 123, 79, 0.45);
+  background: rgba(255, 252, 245, 0.65);
+  padding: 0.75rem 0.9rem;
+  page-break-inside: avoid;
+}
+
+.pillar-card h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  color: var(--accent);
+  border: none;
+}
+
+/* Skill tree print (Cap. 3) */
+.skill-tree-print {
+  margin: 0.6em 0 1.1em;
+  padding: 0.65em 0.75em;
+  border: 1px solid rgba(154, 123, 79, 0.45);
+  background: rgba(255, 252, 245, 0.7);
+  page-break-inside: avoid;
+  font-size: 0.86em;
+}
+
+.skill-tree-print .stp-node {
+  border: 1px solid rgba(154, 123, 79, 0.4);
+  background: #fffaf0;
+  padding: 0.35em 0.55em;
+  margin: 0.15em 0;
+  border-radius: 2px;
+}
+
+.skill-tree-print .stp-root {
+  border-color: var(--accent);
+  border-width: 1.5px;
+  background: linear-gradient(180deg, #f3e6cf, #fffaf0);
+}
+
+.skill-tree-print .stp-name {
+  font-family: Cinzel, serif;
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.skill-tree-print .stp-meta {
+  font-size: 0.82em;
+  color: var(--muted);
+  margin-top: 0.1em;
+}
+
+.skill-tree-print .stp-detail {
+  font-size: 0.88em;
+  color: var(--ink-soft);
+  margin-top: 0.15em;
+  line-height: 1.35;
+}
+
+.skill-tree-print .stp-children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55em 0.7em;
+  margin: 0.45em 0 0 0.85em;
+  padding-left: 0.65em;
+  border-left: 2px solid rgba(154, 123, 79, 0.55);
+}
+
+.skill-tree-print .stp-branch {
+  flex: 1 1 11rem;
+  min-width: 9.5rem;
+  max-width: 100%;
+  position: relative;
+}
+
+.skill-tree-print .stp-branch::before {
+  content: "";
+  position: absolute;
+  left: -0.65em;
+  top: 0.85em;
+  width: 0.55em;
+  border-top: 2px solid rgba(154, 123, 79, 0.55);
+}
+
+.skill-tree-print .stp-branch .stp-children {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  border-left-color: rgba(154, 123, 79, 0.35);
+}
+
+.skill-tree-print .stp-branch .stp-branch {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media print {
+  body { background: var(--paper); }
+  a { color: inherit; }
+  .cover { width: auto; height: auto; min-height: 100vh; }
+}
+
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <img class="cover-bg" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/capa-sistema-das-almas.jpg" alt=""/>
+  <div class="cover-veil"></div>
+  <div class="cover-content">
+    <div class="cover-kicker">✦ Roleplaying Game ✦</div>
+    <h1>Sistema das Almas</h1>
+    <p class="cover-subtitle">Livro do Jogador</p>
+    <div class="cover-rule"></div>
+    <p class="cover-tag">Crie, teste regras, anote o que falhou.</p>
+    <p class="cover-edition">Edição Alpha · Playtest</p>
+  </div>
+</section>
+
+<div class="book-frame">
+<h1>Sumário</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p><strong>Prefácio</strong></p>
+<p><strong>Introdução</strong> — Como Jogar · Usando Este Livro · Os Três Pilares</p>
+<p><strong>Parte 1 — O Personagem</strong></p>
+<ol>
+<li>Criação de Personagens</li>
+<li>Atributos</li>
+<li>Os 8 Domínios · Perícias Vivas</li>
+<li>Habilidades Gerais e Builds Híbridas</li>
+<li>Equipamento e Armas</li>
+<li>Progressão de Nível</li>
+</ol>
+<p><strong>Parte 2 — Jogando a Mesa</strong></p>
+<ol start="7">
+<li>Perícias (Lookup)</li>
+<li>Núcleo de Regras</li>
+<li>Combate</li>
+<li>Magia e Pontos de Magia</li>
+</ol>
+<p><strong>Apêndices</strong></p>
+<ul>
+<li>A. Condições</li>
+<li>B. Bestiário (Nível Baixo)</li>
+<li>C. Kit One-shot</li>
+<li>D. Glossário</li>
+</ul>
+<h1>Prefácio</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Este livro reúne as regras jogáveis do <strong>Sistema das Almas</strong> na versão Alpha de playtest. O objetivo é simples: sentar à mesa, criar personagens em cerca de meia hora e descobrir o que funciona — e o que precisa mudar.</p>
+<p>Não há raças ou classes tradicionais. Em vez disso, cada aventureiro escolhe <strong>Raízes</strong> em <strong>domínios</strong> (caminhos de perícia viva) e gasta <strong>Pontos de Disciplina (PD)</strong> para crescer nesses caminhos. Combate, viagem, ofício e palavra pesam igualmente nos três pilares do sistema.</p>
+<p>Se algo quebrar na sua mesa, anote. Esta edição existe para ser testada.</p>
+<h1>Introdução</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<h2>Como Jogar</h2>
+<p>Uma pessoa assume o papel de <strong>Mestre</strong> (descreve o mundo, interpreta personagens secundários, arbitra regras). As demais interpretam <strong>personagens jogadores</strong>.</p>
+<p>Quando o resultado de uma ação é incerto, role um <strong>d20</strong> e some o atributo relevante — e, se fizer sentido, a <strong>proficiência</strong> do domínio. Compare com uma <strong>CD</strong> (Classe de Dificuldade) definida pelo mestre.</p>
+<p>Em combate, cada personagem tem um <strong>pool de ações</strong> por turno e <strong>1 resposta</strong> por rodada (fora do turno — AO, bloqueio, etc., sem gastar ações). Fora de combate, o pool regenera no início de cada <strong>cena</strong>. Movimento no grid = <strong>3 + ⌊DES/2⌋</strong>. Habilidades vêm dos nós desbloqueados nas árvores de domínio.</p>
+<h2>Usando Este Livro</h2>
+<ul>
+<li><strong>Parte 1</strong> ensina a criar e evoluir um personagem.</li>
+<li><strong>Parte 2</strong> traz o miolo da mesa: testes, combate, combo e magia.</li>
+<li>Os <strong>Apêndices</strong> concentram condições, inimigos de playtest, um kit one-shot e o glossário.</li>
+</ul>
+<p>Leia o Capítulo 1 e o Capítulo 8 antes da primeira sessão. Os domínios (Capítulo 3) podem ser consultados sob demanda.</p>
+<h2>Os Três Pilares</h2>
+<figure class="figure"><img src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ilustracao-tres-pilares.jpg" alt="Os três pilares: Combate, Mundo e Almas."/><figcaption>Os três pilares: Combate, Mundo e Almas.</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>Pilar</th>
+<th>O que cobre</th>
+<th>Regeneração de ações</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Combate</strong></td>
+<td>Encontros hostis no grid: dano, defesa, posição, moral</td>
+<td>Por <strong>turno</strong></td>
+</tr>
+<tr>
+<td><strong>Mundo</strong></td>
+<td>Viagem, sobrevivência, ofício, infiltração, investigação de locais</td>
+<td>Por <strong>cena</strong></td>
+</tr>
+<tr>
+<td><strong>Almas</strong></td>
+<td>Negociação, espírito, leitura de pessoas, performance, política</td>
+<td>Por <strong>cena</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Regras fora do combate</h3>
+<table>
+<thead>
+<tr>
+<th>Regra</th>
+<th>Como funciona</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teste base</td>
+<td>d20 + atributo (+ proficiência se a disciplina cobrir a ação). O mestre escolhe o atributo pela situação.</td>
+</tr>
+<tr>
+<td>Afinidade de domínio</td>
+<td>Ter a Raiz da disciplina concede +2 em testes daquele domínio fora de combate.</td>
+</tr>
+<tr>
+<td>Ação de cena</td>
+<td>Fora de luta, as ações regeneram no início de cada cena (unidade narrativa do mestre), não por turno. Custos das habilidades permanecem iguais.</td>
+</tr>
+<tr>
+<td>Por rodada → por cena</td>
+<td>Efeitos “por rodada” usados fora de combate duram até o fim da cena ou até o mestre declarar o corte.</td>
+</tr>
+<tr>
+<td>Cobertura mínima</td>
+<td>Cada domínio tem ao menos 1 habilidade útil em cada pilar. Tags nas cards mostram o foco dos ramos.</td>
+</tr>
+</tbody>
+</table>
+<h1 class="part-title">PARTE 1</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 1</span>CRIAÇÃO DE PERSONAGENS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>De conceito a personagem jogável em <strong>20–30 minutos</strong>. Não pense em classes nem em roles de combate — pense em quem a pessoa é.</p>
+<h2>Passo 1 — Conceito (5 min)</h2>
+<p>Pense em quem é seu personagem narrativamente. Pergunte-se:</p>
+<ul>
+<li><em>Como ele resolve conflito?</em> (força, distância, magia, palavra…)</li>
+<li><em>Como se move no mundo?</em> (viagem, ofício, infiltração, estudo…)</li>
+<li><em>Como influencia pessoas e espíritos?</em> (medo, cura, política, performance…)</li>
+</ul>
+<h2>Passo 2 — Atributos (10 min)</h2>
+<p>Distribua <strong>10 pontos</strong> entre 6 atributos. Máximo <strong>+4</strong> no nível 1.</p>
+<p><strong>FOR</strong> · <strong>DES</strong> · <strong>CON</strong> · <strong>INT</strong> · <strong>SAB</strong> · <strong>CAR</strong></p>
+<p>Detalhes e custo progressivo estão no Capítulo 2.</p>
+<h2>Passo 3 — Escolha 1 Raiz (5 min)</h2>
+<p>No nível 1, escolha <strong>1 Raiz</strong> (caminho grátis). Exemplos civis: Artes, Artesanato, Herbário, Comércio (Ofício), Erudição, Palco, Caminho. Exemplos de conflito: Duelista, Evocação, Sombra, Muralha. A cada nível seguinte: <strong>+1 PD</strong>.</p>
+<h2>Passo 4 — Habilidades Iniciais</h2>
+<p>Sua Raiz concede a <strong>habilidade inicial do ramo</strong>. Além disso, escolha <strong>1 habilidade geral</strong> (Capítulo 4).</p>
+<h2>Passo 5 — Definir Stats</h2>
+<table>
+<thead>
+<tr>
+<th>Stat</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PV</strong></td>
+<td>8 + CON no nv1; depois +5 + CON por nível</td>
+</tr>
+<tr>
+<td><strong>Ações</strong></td>
+<td>1 no nível 1; sobe conforme a tabela de progressão</td>
+</tr>
+<tr>
+<td><strong>PM</strong></td>
+<td>INT × 3</td>
+</tr>
+<tr>
+<td><strong>CA</strong></td>
+<td>10 + DES + armadura + escudo</td>
+</tr>
+<tr>
+<td><strong>Proficiência</strong></td>
+<td>+1 (nv1–2); +1 a cada 2 níveis (Núcleo)</td>
+</tr>
+</tbody>
+</table>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 2</span>ATRIBUTOS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Cada atributo ganha funções ativas e passivas.</p>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Função Ativa</th>
+<th>Função Passiva</th>
+<th>Disciplinas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FOR</td>
+<td>Dano corpo a corpo, empurrões, Força Bruta</td>
+<td>Carga, atletismo, ofício do ferro, intimidação física</td>
+<td>Corpo, Guarda</td>
+</tr>
+<tr>
+<td>DES</td>
+<td>Acerto, CA, precisão à distância</td>
+<td>Movimento (3 + ⌊DES/2⌋), acrobacia, furtividade, fechaduras, artesanato fino</td>
+<td>Corpo, Precisão, Trilha, Ofício</td>
+</tr>
+<tr>
+<td>CON</td>
+<td>Bloqueio, aura, vigília</td>
+<td>PV, venenos, clima, marcha forçada</td>
+<td>Guarda</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>Dano mágico, PM (INT×3), análise, rituais</td>
+<td>Identificação, letras, avaliação, investigação</td>
+<td>Arcana, Insight, Ofício</td>
+</tr>
+<tr>
+<td>SAB</td>
+<td>Marcas, ordens, leitura de cena</td>
+<td>Percepção, rastreio, herbário, remédio</td>
+<td>Trilha, Ofício, Insight</td>
+</tr>
+<tr>
+<td>CAR</td>
+<td>Amedrontar, coragem, cura espiritual, comando</td>
+<td>Negociação, performance, comércio, rede</td>
+<td>Voz, Insight, Ofício</td>
+</tr>
+</tbody>
+</table>
+<h2>Custo Progressivo de Atributos</h2>
+<p>Personagens altamente especializados pagam um preço real. Um personagem com FOR +8 sacrificou 17 pontos de atributo.</p>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Custo</th>
+<th>Acumulado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1 a +3</td>
+<td>1 ponto cada</td>
+<td>3</td>
+</tr>
+<tr>
+<td>+4 a +5</td>
+<td>2 pontos cada</td>
+<td>7</td>
+</tr>
+<tr>
+<td>+6 a +7</td>
+<td>3 pontos cada</td>
+<td>13</td>
+</tr>
+<tr>
+<td>+8</td>
+<td>4 pontos</td>
+<td>17</td>
+</tr>
+<tr>
+<td>+9</td>
+<td>5 pontos</td>
+<td>22</td>
+</tr>
+<tr>
+<td>+10</td>
+<td>6 pontos</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<h2>Ações por Nível · PM</h2>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Ações/Turno</th>
+<th>PM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>1–2</td>
+<td>INT × 3</td>
+</tr>
+<tr>
+<td>3+</td>
+<td>ver Progressão</td>
+<td>INT × 3 (ex.: INT 2→6 · 3→9 · 5→15 · 7→21)</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Ações: +1/nível até nv7; depois +1 em 9, 12 e 16 (teto 10). PM não cresce com nível — só com INT.
+
+</div>
+
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 3</span>OS 8 DOMÍNIOS · PERÍCIAS VIVAS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Os domínios substituem as perícias tradicionais de mesa: combate, ofício, arte, estudo, viagem e palavra — não só agressão.</p>
+<p><strong>Pré-requisito:</strong> Raiz + nó anterior no caminho. O <strong>REQ</strong> de cada nó lista o superior (ex.: <code>REQ Lâmina · DES 5</code>) e, se houver, atributos.<br>
+<strong>Forks</strong> são caminhos paralelos: pegar um não impede pegar outro depois — basta seguir a ordem de cada linha (cada nó custa <strong>1 PD</strong>).</p>
+<p>Cada domínio abaixo lista seus ramos (caminhos). O primeiro nó de cada ramo é a <strong>Raiz</strong>. A árvore mostra forks como ramos irmãos.</p>
+<h2>Corpo</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> FOR, DES</p>
+<p>Maestria do corpo: luta, esforço, ofício pesado e presença. O ramo Ofício do Ferro é trabalho físico (forja/demolição) — para arte, costura, cozinha e comércio use o domínio Ofício.</p>
+<h3>⚔️ Duelista (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Duelista</div><div class="stp-meta">1 ação</div><div class="stp-detail">Ataque corpo a corpo +1 acerto. Fora: +2 em duelos ritualizados.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Lâmina</div><div class="stp-meta">REQ Duelista · DES 4</div><div class="stp-detail">Fork ágil: crítico em 19–20.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Lâmina Rápida</div><div class="stp-meta">2 ações · REQ Lâmina · DES 5</div><div class="stp-detail">2 ataques por 2 ações.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Corte Perfeito</div><div class="stp-meta">2 ações · REQ Lâmina Rápida · DES 6</div><div class="stp-detail">Ignora 50% da CA.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Mestre da Lâmina</div><div class="stp-meta">REQ Corte Perfeito · DES 7</div><div class="stp-detail">Combo não quebra em crítico.</div></div></div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Impacto</div><div class="stp-meta">REQ Duelista · FOR 4</div><div class="stp-detail">Fork bruto: acertos empurram 1 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Golpe Quebrador</div><div class="stp-meta">2 ações · REQ Impacto · FOR 5</div><div class="stp-detail">Ataque +1d8; quebra objeto leve.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Devastação</div><div class="stp-meta">3 ações · REQ Golpe Quebrador · FOR 7</div><div class="stp-detail">Crítico: metade do dano em 1 grid ao redor.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Quebra-Tudo</div><div class="stp-meta">3 ações · REQ Devastação · FOR 8</div><div class="stp-detail">Ignora armadura; dano ×2 vs estruturas.</div></div></div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Marcial</div><div class="stp-meta">REQ Duelista · FOR 3 DES 3</div><div class="stp-detail">Fork desarmado: 1d6+FOR como arma leve.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Combo Marcial</div><div class="stp-meta">2 ações · REQ Marcial · DES 5</div><div class="stp-detail">3 golpes −1 acerto cada.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fluxo</div><div class="stp-meta">1 ação · REQ Combo Marcial · DES 6</div><div class="stp-detail">Após acerto desarmado: move 1 grid sem AO.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Punho Ascendente</div><div class="stp-meta">2 ações · REQ Fluxo · FOR 6 DES 6</div><div class="stp-detail">Desarmado: crítico em 19–20; +1d6.</div></div></div></div></div></div></div></div></div></div>
+</div>
+
+<p><strong>Duelista.</strong> Você treina o combate corpo a corpo com disciplina de duelista. Fora de combate, o bônus maior vale em duelos ritualizados: desafios formais de honra, apostas de lâmina ou combates combinados sob regras (geralmente um contra um, sem o grupo interferir). Uma briga espontânea de taverna normalmente não conta — o mestre decide quando a cena é ritualizada.</p>
+<p><strong>Lâmina.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Este caminho privilegia velocidade e precisão: amplia a faixa de crítico (19–20), punindo falhas na guarda do oponente.</p>
+<p><strong>Lâmina Rápida.</strong> Rajada de golpes: pelo custo de 2 ações você desfere dois ataques na mesma ativação — ideal para pressionar um alvo frágil ou gastar a barra de combo mais rápido.</p>
+<p><strong>Corte Perfeito.</strong> Técnica que encontra a fresta na armadura: metade da CA do alvo é ignorada naquele ataque, tornando o acerto bem mais fácil contra inimigos bem protegidos.</p>
+<p><strong>Mestre da Lâmina.</strong> Maestria absoluta: quando você critica, a barra de combo não quebra — o ritmo de golpes continua mesmo no momento mais explosivo do combate.</p>
+<p><strong>Impacto.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Caminho da força bruta: cada acerto empurra o alvo 1 grid, abrindo espaço ou jogando inimigos para fora de posição.</p>
+<p><strong>Golpe Quebrador.</strong> Golpe pesado com dano extra (+1d8) e utilidade narrativa: quebra objetos leves (portas frágeis, correntes, barricadas improvisadas) além de ferir.</p>
+<p><strong>Devastação.</strong> No crítico, a força do impacto espalha metade do dano em 1 grid ao redor do alvo — bom contra grupos apertados, cuidado com aliados adjacentes.</p>
+<p><strong>Quebra-Tudo.</strong> Especialista em demolir defesa e estrutura: ignora armadura no ataque e dobra dano contra estruturas (portões, muralhas, máquinas).</p>
+<p><strong>Marcial.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Caminho desarmado: punhos e chutes passam a contar como arma leve (1d6+FOR).</p>
+<p><strong>Combo Marcial.</strong> Sequência de três golpes desarmados com −1 de acerto em cada um: volume de ataques em troca de precisão — combina com crítico ampliado do ramo Marcial.</p>
+<p><strong>Fluxo.</strong> Após acertar desarmado, você desliza 1 grid sem provocar ataque de oportunidade (AO). AO é a resposta que inimigos fazem quando você sai do alcance corpo a corpo sem desengajar.</p>
+<p><strong>Punho Ascendente.</strong> Ápice do caminho desarmado: críticos mais fáceis (19–20) e +1d6 de dano — o corpo vira arma completa.</p>
+<h3>💀 Berserker (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Berserker</div><div class="stp-meta">1 ação</div><div class="stp-detail">Gaste 2 PV: +1d6 no dano de 1 ataque.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fúria</div><div class="stp-meta">1 ação · REQ Berserker · FOR 4</div><div class="stp-detail">+2 dano, −1 CA por 3 rodadas.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Golpe Sacrificial</div><div class="stp-meta">2 ações · REQ Fúria · FOR 5</div><div class="stp-detail">Gaste 5 PV: crítico automático.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ira Inquebrável</div><div class="stp-meta">3 ações · REQ Golpe Sacrificial · FOR 8</div><div class="stp-detail">A 0 PV em fúria: age 1 rodada antes de cair.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sede</div><div class="stp-meta">Passivo · REQ Berserker · FOR 4</div><div class="stp-detail">Em fúria: +2 PV ao derrotar inimigo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Frenesi</div><div class="stp-meta">2 ações · REQ Sede · FOR 6</div><div class="stp-detail">Em fúria: sem AO; +1 ataque se <50% PV.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ímpeto</div><div class="stp-meta">Passivo · REQ Berserker · CON 3</div><div class="stp-detail">Em fúria: +2 movimento.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Investida Sangrenta</div><div class="stp-meta">2 ações · REQ Ímpeto · FOR 5 CON 3</div><div class="stp-detail">Em fúria: move + ataca sem AO.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Berserker.</strong> Você aprende a converter dor em força: gasta 2 PV para somar +1d6 no dano de um ataque. O custo é real — use quando o acerto precisar matar ou furar defesa.</p>
+<p><strong>Fúria.</strong> Estado de combate selvagem por 3 rodadas: +2 de dano e −1 de CA. Você bate mais forte, mas fica mais fácil de acertar. Vários nós do ramo só funcionam “em fúria”.</p>
+<p><strong>Golpe Sacrificial.</strong> Aposta extrema: gasta 5 PV para garantir crítico automático naquele ataque. Alto risco, alto retorno — combine com efeitos que disparam em crítico.</p>
+<p><strong>Ira Inquebrável.</strong> Em Fúria, ao cair a 0 PV você ainda age uma rodada antes de desmaiar — último suspiro para matar o algoz, chegar a um aliado ou usar uma cura.</p>
+<p><strong>Sede.</strong> Enquanto estiver sob Fúria, derrotar um inimigo recupera 2 PV — a violência alimenta o berserker e ajuda a compensar o PV gasto em habilidades do ramo.</p>
+<p><strong>Frenesi.</strong> Em Fúria você não provoca AO ao se mover, e abaixo de 50% dos PV ganha +1 ataque. Empurra o estilo “quanto mais ferido, mais perigoso”.</p>
+<p><strong>Ímpeto.</strong> Em Fúria, seu movimento aumenta em +2 grid por turno (somado à fórmula 3 + ⌊DES/2⌋): você fecha distância e persegue alvos em fuga com bem mais facilidade.</p>
+<p><strong>Investida Sangrenta.</strong> Em Fúria, mover e atacar na mesma ativação sem sofrer AO — investida clássica de berserker atravessando a linha inimiga.</p>
+<h3>🔨 Ofício do Ferro (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Ofício do Ferro</div><div class="stp-meta">Passivo</div><div class="stp-detail">+2 FOR romper/carregar/forjar. Repara 1 arma/descanso.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ferreiro</div><div class="stp-meta">2 ações · REQ Ofício do Ferro · FOR 4</div><div class="stp-detail">Aprimora item +1 dano ou +1 CA até descanso longo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Kit de Campo</div><div class="stp-meta">1 ação · REQ Ferreiro · FOR 5 INT 2</div><div class="stp-detail">Cria 1 ferramenta improvisada na cena.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Atleta</div><div class="stp-meta">1 ação · REQ Ofício do Ferro · FOR 4</div><div class="stp-detail">Vantagem escala/nado/salto; salto 2 grid em combate.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Carga</div><div class="stp-meta">Passivo · REQ Atleta · FOR 5</div><div class="stp-detail">Carga ×2; carrega aliado inconsciente sem penalidade.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Demolidor</div><div class="stp-meta">1 ação · REQ Ofício do Ferro · FOR 5</div><div class="stp-detail">Dano ×2 vs objetos; portas CD −4.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Quebra-Montanha</div><div class="stp-meta">3 ações · REQ Demolidor · FOR 8</div><div class="stp-detail">Ignora bônus de armadura num ataque.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Ofício do Ferro.</strong> Raiz do trabalho físico pesado: +2 FOR em romper, carregar e forjar, e repara 1 arma por descanso. É ofício de forja e demolição — não é arte fina (isso fica no domínio Ofício).</p>
+<p><strong>Ferreiro.</strong> Você tempera equipamento: até o próximo descanso longo, um item ganha +1 de dano ou +1 de CA. Buff tático para o grupo entre combates.</p>
+<p><strong>Kit de Campo.</strong> Improvisa 1 ferramenta na cena (alavanca, pé de cabra, corda reforçada, etc.) — o mestre valida o que faz sentido com o material disponível.</p>
+<p><strong>Atleta.</strong> Corpo treinado para terreno e perseguição: vantagem em escalar, nadar e saltar; em combate, salto de 2 grid para flanquear ou cruzar obstáculos.</p>
+<p><strong>Carga.</strong> Capacidade de carga dobrada e pode carregar aliado inconsciente sem penalidade de movimento — essencial para resgates sob fogo.</p>
+<p><strong>Demolidor.</strong> Especialista em objetos: dano dobrado contra coisas inanimadas e portas ficam bem mais fáceis (CD −4). Abre caminho quando a chave não existe.</p>
+<p><strong>Quebra-Montanha.</strong> Um ataque que ignora o bônus de armadura do alvo (não a CA base inteira, só o que a armadura adiciona): fura placas e cotas com força pura.</p>
+<h3>😤 Presença (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Presença</div><div class="stp-meta">1 ação</div><div class="stp-detail">FOR ou CAR: Hesitante. Fora: intimida sem violência.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Aterrorizar</div><div class="stp-meta">2 ações · REQ Presença · FOR 4</div><div class="stp-detail">Amedrontado 1 rodada (TDD SAB).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Terror Físico</div><div class="stp-meta">3 ações · REQ Aterrorizar · FOR 6</div><div class="stp-detail">Inimigos a 2 grid Hesitantes (TDD SAB).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Escudo Humano</div><div class="stp-meta">1 ação · REQ Presença · FOR 5</div><div class="stp-detail">Recebe o próximo dano no lugar de aliado/NPC adjacente.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Protetor</div><div class="stp-meta">Passivo · REQ Escudo Humano · FOR 6</div><div class="stp-detail">Enquanto proteger: +1 CA.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Respeito</div><div class="stp-meta">Passivo · REQ Presença · FOR 5</div><div class="stp-detail">Soldados/guardas começam Neutros se exibir arma.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Campeão</div><div class="stp-meta">Passivo · REQ Respeito · FOR 6 CAR 2</div><div class="stp-detail">+2 CAR vs autoridades militares.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Presença.</strong> Imponente: um teste de FOR ou CAR deixa o alvo Hesitante (−2 no próximo ato hostil). Fora de combate, intimida sem precisar partar para a violência — olhar, postura, ameaça contida.</p>
+<p><strong>Aterrorizar.</strong> Medo combatente: Amedrontado por 1 rodada (alvo testa SAB). Amedrontado = −2 em ataques enquanto a fonte estiver visível e não pode se aproximar voluntariamente de você.</p>
+<p><strong>Terror Físico.</strong> Aura de ameaça a 2 grid: inimigos ficam Hesitantes se falharem TDD de SAB. Controla o espaço social do combate.</p>
+<p><strong>Escudo Humano.</strong> Você se põe no caminho: o próximo dano destinado a um aliado ou NPC adjacente vem para você. Proteção literal de corpo.</p>
+<p><strong>Protetor.</strong> Enquanto estiver protegendo alguém (escudo humano / guarda ativa), você ganha +1 CA — defesa e sacrifício andam juntos.</p>
+<p><strong>Respeito.</strong> Soldados e guardas começam Neutros se você exibir arma de forma controlada — autoridade marcial abre portas antes da briga.</p>
+<p><strong>Campeão.</strong> +2 de CAR contra autoridades militares (capitães, oficiais, chefes de guarda): sua reputação de guerreiro pesa em negociações com quem respeita força.</p>
+<h2>Precisão</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> DES, SAB</p>
+<p>Distância e detalhe. Atirador tem três estilos de tiro; Truqueiro, Rastreador e Sinaleiro são caminhos próprios.</p>
+<h3>🔭 Atirador (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Atirador</div><div class="stp-meta">1 ação</div><div class="stp-detail">Mira: +2 acerto no próximo ataque à distância do turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Certeiro</div><div class="stp-meta">2 ações · REQ Atirador · DES 5</div><div class="stp-detail">Fork precisão: ignora 3 CA no próximo tiro.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ponto Cego</div><div class="stp-meta">3 ações · REQ Certeiro · DES 7</div><div class="stp-detail">Vs alvo que não vê você: crítico automático.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Longo Alcance</div><div class="stp-meta">3 ações · REQ Ponto Cego · DES 8</div><div class="stp-detail">Dobra alcance; +1d8 / 6 grid além de 6.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rajada</div><div class="stp-meta">2 ações · REQ Atirador · DES 4</div><div class="stp-detail">Fork velocidade: 2 ataques −2 acerto cada.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Saraivada</div><div class="stp-meta">4 ações · REQ Rajada · DES 6</div><div class="stp-detail">1 ataque vs cada inimigo em cone 3 grid.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Perfurante</div><div class="stp-meta">2 ações · REQ Atirador · DES 6</div><div class="stp-detail">Fork penetração: atravessa; atrás sofre metade.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rompedor</div><div class="stp-meta">2 ações · REQ Perfurante · DES 7</div><div class="stp-detail">Ignora cobertura parcial; +1d6 vs armadura pesada.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Atirador.</strong> Disciplina de mira: gasta a ação de mirar para ganhar +2 de acerto no próximo ataque à distância do turno. Troca tempo por precisão.</p>
+<p><strong>Certeiro.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Estilo precisão: o próximo tiro ignora 3 pontos de CA — útil contra armadura ou cobertura parcial.</p>
+<p><strong>Ponto Cego.</strong> interage com críticos (garantir, ampliar ou explorar o estouro do dado).</p>
+<p><strong>Longo Alcance.</strong> Você treina tiros além do alcance usual: dobra a distância efetiva e, a cada 6 grid além dos primeiros 6, soma +1d8 de dano. Bom para franco-atirador e emboscadas de longe — o mestre mede o grid até o alvo.</p>
+<p><strong>Rajada.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Estilo velocidade: dois ataques com −2 de acerto cada. Volume de projéteis em troca de precisão.</p>
+<p><strong>Saraivada.</strong> Varre um cone de 3 grid: um ataque contra cada inimigo na área. Ideal para grupos apertados na frente; cuidado para não incluir aliados no cone.</p>
+<p><strong>Perfurante.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Estilo penetração: o projétil atravessa o alvo e quem estiver alinhado atrás sofre metade do dano.</p>
+<p><strong>Rompedor.</strong> Tiro feito para furar abrigo: ignora cobertura parcial e causa +1d6 contra armadura pesada. Cobertura parcial = meio corpo atrás de muro/caixa; cobertura total ainda bloqueia sem outros truques (como Ricochete).</p>
+<h3>🃏 Truqueiro (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Truqueiro</div><div class="stp-meta">1 ação</div><div class="stp-detail">Especialidades de projétil — forks abaixo; pode aprofundar mais de um.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fumaça</div><div class="stp-meta">2 ações · REQ Truqueiro · SAB 4</div><div class="stp-detail">Nuvem 2 grid, 2 rodadas — ou cobre fuga 1 cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Nuvem Tóxica</div><div class="stp-meta">2 ações · REQ Fumaça · SAB 5</div><div class="stp-detail">Fumaça também Envenena (TDD CON).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Veneno</div><div class="stp-meta">1 ação · REQ Truqueiro · SAB 4</div><div class="stp-detail">+1d4 veneno; Envenenado 3 rodadas (TDD CON).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Neurotoxina</div><div class="stp-meta">2 ações · REQ Veneno · SAB 6</div><div class="stp-detail">Paralisado 1 rodada (TDD CON −2).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ricochete</div><div class="stp-meta">2 ações · REQ Truqueiro · DES 5</div><div class="stp-detail">Ignora cobertura total via superfície.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ricochete Duplo</div><div class="stp-meta">3 ações · REQ Ricochete · DES 7</div><div class="stp-detail">1 projétil atinge 2 alvos.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Truqueiro.</strong> Raiz das especialidades de projétil (fumaça, veneno, ricochete…). Escolher um tipo abre aquele caminho; você pode investir em mais de um fork depois, seguindo a ordem de cada linha.</p>
+<p><strong>Fumaça.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Lança uma nuvem de 2 grid por 2 rodadas (bloqueia visão / atrapalha miras conforme o mestre) — ou, fora de combate, cobre uma fuga por 1 cena inteira. Ferramenta de escape e confusão, não de dano direto.</p>
+<p><strong>Nuvem Tóxica.</strong> Evolução da Fumaça: a nuvem também envenena quem ficar dentro (TDD CON). Controla espaço e pressiona inimigos a sair do abrigo de fumaça.</p>
+<p><strong>Veneno.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Projétil envenenado: +1d4 de dano de veneno e a condição Envenenado por 3 rodadas (TDD CON). Envenenado enfraquece ataques (−1d6) e drena 1 PV por turno até o alvo passar no teste.</p>
+<p><strong>Neurotoxina.</strong> Veneno avançado: deixa Paralisado 1 rodada se falhar TDD CON com −2. Paralisado = sem ações/movimento; ataques corpo a corpo contra o alvo acertam e são críticos.</p>
+<p><strong>Ricochete.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. O projétil rebate em superfície para ignorar cobertura total — atira no ângulo que o mestre aceitar (parede, escudo, pedra). Sem linha reta, mas com geometria.</p>
+<p><strong>Ricochete Duplo.</strong> Um único projétil atinge dois alvos via ricochete — o mestre define o segundo alvo válido na geometria da cena.</p>
+<h3>🐾 Rastreador (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Rastreador</div><div class="stp-meta">1 ação</div><div class="stp-detail">Trilhas +2 SAB. Combate: Marca (+2 acerto, sabe posição).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Caça</div><div class="stp-meta">Passivo · REQ Rastreador · SAB 3</div><div class="stp-detail">Grupo se alimenta no selvagem sem teste diário.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Presa Marcada</div><div class="stp-meta">1 ação · REQ Caça · SAB 5</div><div class="stp-detail">Mantém 2 Marcas simultâneas.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Cartógrafo</div><div class="stp-meta">1 ação · REQ Rastreador · SAB 4</div><div class="stp-detail">Mapeia região; grupo não se perde na cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rota Segura</div><div class="stp-meta">Passivo · REQ Cartógrafo · SAB 6</div><div class="stp-detail">Viagem: ignora 1 encontro aleatório/dia (mestre).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Acampamento</div><div class="stp-meta">2 ações · REQ Rastreador · SAB 5</div><div class="stp-detail">Descanso sem surpresa; +1 PV recuperado.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sentidos do Predador</div><div class="stp-meta">Passivo · REQ Acampamento · SAB 7</div><div class="stp-detail">Marcados não se escondem; +2 iniciativa.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Rastreador.</strong> Lê o chão: +2 SAB em trilhas. Em combate, aplica Marca (+2 acerto e você sabe a posição do marcado). Marca é o “faro” tático do ramo — vários nós seguintes ampliam isso.</p>
+<p><strong>Caça.</strong> O grupo se alimenta no selvagem sem teste diário de forrageio. Remove atrito de viagem e fome em campanhas longas.</p>
+<p><strong>Presa Marcada.</strong> Mantém duas Marcas ao mesmo tempo — caça dois alvos prioritários (chefe + tenente, por exemplo).</p>
+<p><strong>Cartógrafo.</strong> Mapeia a região atual; o grupo não se perde naquela cena. Útil em masmorras, floresta densa ou cidade labiríntica.</p>
+<p><strong>Rota Segura.</strong> Em viagem, ignora 1 encontro aleatório por dia (mestre escolhe qual). Narrativa de “achamos um atalho / rastros evitados”.</p>
+<p><strong>Acampamento.</strong> Descanso sem surpresa e +1 PV recuperado: você organiza guarda e sítio seguro. Menos emboscadas noturnas.</p>
+<p><strong>Sentidos do Predador.</strong> Marcados não conseguem se esconder de você e você ganha +2 de iniciativa — o predador age primeiro contra a presa.</p>
+<h3>📡 Sinaleiro (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Sinaleiro</div><div class="stp-meta">1 ação</div><div class="stp-detail">Mensagem silenciosa a aliado em visão (12 grid).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Leitura à Distância</div><div class="stp-meta">1 ação · REQ Sinaleiro · SAB 5</div><div class="stp-detail">Revela humor/intenção/detalhe de alvo distante.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Olho do Horizonte</div><div class="stp-meta">2 ações · REQ Leitura à Distância · SAB 7</div><div class="stp-detail">1×/cena: mestre responde 1 pergunta sobre local distante.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Chamado</div><div class="stp-meta">2 ações · REQ Sinaleiro · SAB 6</div><div class="stp-detail">Sinal a 1 km. Combate: aliado move 1 grid fora do turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Alarme</div><div class="stp-meta">2 ações · REQ Chamado · SAB 5</div><div class="stp-detail">Marca zona 4 grid: você sabe se alguém entra.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Espelho de Sinais</div><div class="stp-meta">Passivo · REQ Sinaleiro · SAB 4 CAR 2</div><div class="stp-detail">Aliados a 6 grid compartilham 1 info livre/turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rede Tática</div><div class="stp-meta">3 ações · REQ Espelho de Sinais · SAB 7</div><div class="stp-detail">Ordem: 2 aliados movem 1 grid fora do turno.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Sinaleiro.</strong> Comunicação silenciosa com aliado em visão (até 12 grid): gestos, espelhos, códigos. Combate e infiltração coordenada sem gritar.</p>
+<p><strong>Leitura à Distância.</strong> De longe, lê humor, intenção ou um detalhe do alvo. Espionagem e avaliação social sem chegar perto.</p>
+<p><strong>Olho do Horizonte.</strong> 1× por cena: o mestre responde 1 pergunta sobre um local distante que você observa/conhece por sinalização ou panorama.</p>
+<p><strong>Chamado.</strong> Sinal audível/visível a até 1 km. Em combate, um aliado pode mover 1 grid fora do turno ao seu chamado — sincroniza a equipe.</p>
+<p><strong>Alarme.</strong> Marca uma zona de 4 grid: você fica sabendo se alguém entra. Vigilância de acampamento, corredor ou tesouro.</p>
+<p><strong>Espelho de Sinais.</strong> Aliados a 6 grid compartilham 1 informação livre por turno (posição inimiga, alerta, ordem curta) sem gastar ação de fala.</p>
+<p><strong>Rede Tática.</strong> Ordem de combate: 2 aliados movem 1 grid fora do turno. Reposiciona a linha sem gastar o turno deles inteiro.</p>
+<h2>Arcana</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> INT, SAB</p>
+<p>Trama mágica. Evocação tem três forks elementais (Fogo, Relâmpago, Gelo) — você pode investir em mais de um. Também Invocação, Erudição e Véu.</p>
+<h3>🔮 Evocação (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Evocação</div><div class="stp-meta">1 ação + 1 PM</div><div class="stp-detail">Magia elemental básica 1d6+INT. Fora: acende/aquece/apaga área pequena. Elementos abaixo são forks: pode aprofundar mais de um, na ordem de cada linha.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Chama</div><div class="stp-meta">REQ Evocação</div><div class="stp-detail">Fork Fogo: dano em área e queima.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Projétil Ígneo</div><div class="stp-meta">1 ação + 1 PM · REQ Chama · INT 3</div><div class="stp-detail">1d10+INT, alvo único.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Explosão</div><div class="stp-meta">2 ações + 2 PM · REQ Projétil Ígneo · INT 4</div><div class="stp-detail">2d8 em cone 3 grid (fogo).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Inferno</div><div class="stp-meta">3 ações + 3 PM · REQ Explosão · INT 6</div><div class="stp-detail">3d8 raio 4 grid; ignora resistência a fogo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Meteoro Ígneo</div><div class="stp-meta">4 ações + 4 PM · REQ Inferno · INT 8</div><div class="stp-detail">4d10 em 6 grid (fogo).</div></div></div></div></div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Raio</div><div class="stp-meta">REQ Evocação</div><div class="stp-detail">Fork Relâmpago: linha e atordoamento.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Faísca</div><div class="stp-meta">1 ação + 1 PM · REQ Raio · INT 3</div><div class="stp-detail">1d8+INT; se crítico, Atordoado 1 turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Tempestade</div><div class="stp-meta">2 ações + 2 PM · REQ Faísca · INT 4</div><div class="stp-detail">2d6 em linha 6 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Destruição</div><div class="stp-meta">3 ações + 3 PM · REQ Tempestade · INT 6</div><div class="stp-detail">3d8 na linha; Atordoado (TDD CON).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Tempestade Primordial</div><div class="stp-meta">4 ações + 4 PM · REQ Destruição · INT 8</div><div class="stp-detail">4d8 linha 10 grid; Atordoado (TDD CON −2).</div></div></div></div></div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Gelo</div><div class="stp-meta">REQ Evocação</div><div class="stp-detail">Fork Gelo: controle, lentidão e prisão.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Lâmina de Gelo</div><div class="stp-meta">1 ação + 1 PM · REQ Gelo · INT 3</div><div class="stp-detail">1d8+INT; alvo −1 grid de movimento.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Prisão Glacial</div><div class="stp-meta">2 ações + 3 PM · REQ Lâmina de Gelo · INT 5</div><div class="stp-detail">Prende alvo (TDD CON). Fora: sela passagem 1 cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Nevasca</div><div class="stp-meta">3 ações + 2 PM · REQ Prisão Glacial · INT 6</div><div class="stp-detail">2d6 raio 3 grid; terreno difícil 2 rodadas.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Era Glacial</div><div class="stp-meta">4 ações + 4 PM · REQ Nevasca · INT 8</div><div class="stp-detail">Área 4 grid: inimigos com movimento −2 grid; 3d8 gelo (TDD CON pela metade).</div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+
+<p><strong>Evocação.</strong> Magia elemental básica (1d6+INT). Fora de combate serve para acender, aquecer ou apagar uma área pequena. Os elementos abaixo (Fogo, Relâmpago, Gelo) são forks: você pode aprofundar mais de um, desde que respeite a ordem de cada linha e gaste PD.</p>
+<p><strong>Chama.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Especialização em fogo: área e queima — controle de espaço pelo calor.</p>
+<p><strong>Projétil Ígneo.</strong> Feitiço de fogo focado: 1d10+INT em um alvo. Mais dano que a Evocação básica, sem área — precisão flamejante.</p>
+<p><strong>Explosão.</strong> Cone de fogo 3 grid (2d8): queima um setor à frente. Bom contra formações; aliados no cone também sofrem se estiverem na área.</p>
+<p><strong>Inferno.</strong> Área ampla (raio 4 grid, 3d8) que ignora resistência a fogo. Finisher elemental caro em espaço e PM — limpa salas.</p>
+<p><strong>Meteoro Ígneo.</strong> Impacto devastador (4d10 em 6 grid). Magia de artilharia: prepare posição e avise o grupo antes de soltar.</p>
+<p><strong>Raio.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Especialização em relâmpago: ataques em linha e atordoamento.</p>
+<p><strong>Faísca.</strong> Relâmpago pontual (1d8+INT); em crítico, Atordoado 1 turno. Atordoado = perde o próximo turno e não usa reações.</p>
+<p><strong>Tempestade.</strong> Linha de 6 grid com 2d6: corta corredores e fileiras. Posicione o ângulo para pegar vários inimigos alinhados.</p>
+<p><strong>Destruição.</strong> Linha reforçada (3d8) e Atordoado (TDD CON). Controle + dano no caminho do raio.</p>
+<p><strong>Tempestade Primordial.</strong> Ápice do relâmpago: linha 10 grid, 4d8, Atordoado com TDD CON −2. Magia de campo de batalha inteiro.</p>
+<p><strong>Gelo.</strong> Fork: caminho paralelo na árvore. Pegar este nó não impede comprar os outros forks da mesma raiz depois — basta seguir a ordem de cada linha e gastar 1 PD por nó. Especialização em gelo: lentidão, controle de movimento e prisão.</p>
+<p><strong>Lâmina de Gelo.</strong> Corte gelado (1d8+INT) que reduz 1 grid do movimento do alvo — dano com freio de perseguição.</p>
+<p><strong>Prisão Glacial.</strong> Prende o alvo (TDD CON). Fora de combate, sela uma passagem por 1 cena (porta, corredor, fresta) com gelo.</p>
+<p><strong>Nevasca.</strong> Área 3 grid (2d6) vira terreno difícil por 2 rodadas: inimigos gastam mais movimento para atravessar o frio.</p>
+<p><strong>Era Glacial.</strong> Campo de 4 grid: inimigos com −2 grid de movimento e 3d8 de gelo (TDD CON pela metade). Domina o tabuleiro pelo frio.</p>
+<h3>👻 Invocação (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Invocação</div><div class="stp-meta">2 ações + 2 PM</div><div class="stp-detail">Familiar frágil (CA 12, PV 8, 1d4). Age no seu turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Espírito Guardião</div><div class="stp-meta">1 ação + 1 PM · REQ Invocação · INT 4</div><div class="stp-detail">Familiar: +2 CA a você se adjacente.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sacrifício</div><div class="stp-meta">Quando atacado · REQ Espírito Guardião · INT 5</div><div class="stp-detail">Familiar absorve 1 ataque e some.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Espírito Predador</div><div class="stp-meta">1 ação + 1 PM · REQ Invocação · INT 4</div><div class="stp-detail">Familiar: ataque 1d8+INT.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Duo</div><div class="stp-meta">3 ações + 3 PM · REQ Espírito Predador · INT 6</div><div class="stp-detail">2 familiares da mesma especialidade.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Espírito Mensageiro</div><div class="stp-meta">1 ação + 1 PM · REQ Invocação · INT 3 SAB 3</div><div class="stp-detail">Leva mensagem 1 dia de viagem.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Avatar</div><div class="stp-meta">5 ações + 5 PM · REQ Espírito Mensageiro · INT 8</div><div class="stp-detail">1×/dia: invocação grande 3 rodadas (PV 30, 2d8+INT).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Invocação.</strong> Você conjura um familiar frágil (CA 12, PV 8, 1d4) que age no seu turno. É uma extensão da sua vontade no campo — os nós seguintes especializam o espírito.</p>
+<p><strong>Espírito Guardião.</strong> Familiar adjacente: +2 CA a você. Escudo espiritual.</p>
+<p><strong>Sacrifício.</strong> Quando você seria atingido, o familiar absorve 1 ataque e some. Não gasta ações — usa sua 1 resposta da rodada. Escudo descartável.</p>
+<p><strong>Espírito Predador.</strong> Familiar ataca com 1d8+INT. Dente da Invocação.</p>
+<p><strong>Duo.</strong> Mantém 2 familiares da mesma especialidade. Dobra a presença da Invocação.</p>
+<p><strong>Espírito Mensageiro.</strong> Leva mensagem por 1 dia de viagem. Correio arcano lento, mas confiável.</p>
+<p><strong>Avatar.</strong> 1× por dia: invocação grande por 3 rodadas (PV 30, 2d8+INT). Tanque/temporário de emergência.</p>
+<h3>📜 Erudição (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Erudição</div><div class="stp-meta">1 ação + 1 PM</div><div class="stp-detail">Identifica magia/item (INT). Combate: escudo +2 CA 1 turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Alquimia</div><div class="stp-meta">2 ações + 1 PM · REQ Erudição · INT 4</div><div class="stp-detail">1 poção/descanso (cura 1d6, ácido ou fumaça).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Catalisador</div><div class="stp-meta">Passivo · REQ Alquimia · INT 6</div><div class="stp-detail">Poções curam +1d6 ou dobram duração.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Dissipar</div><div class="stp-meta">2 ações + 2 PM · REQ Erudição · INT 5</div><div class="stp-detail">Cancela efeito mágico (INT vs potência).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Zona Anti-Magia</div><div class="stp-meta">4 ações + 4 PM · REQ Dissipar · INT 7</div><div class="stp-detail">Raio 3 grid: sem magia 3 rodadas.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ritual</div><div class="stp-meta">3 ações + 2 PM · REQ Erudição · INT 6</div><div class="stp-detail">10 min: luz, selar, mensagem a aliado.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Reflexão</div><div class="stp-meta">Quando alvo de magia · 3 PM · REQ Ritual · INT 6</div><div class="stp-detail">Reflete magia com metade do efeito.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Erudição.</strong> Saber arcanista: identifica magia e itens com INT. Em combate, erige um escudo mágico (+2 CA por 1 turno) — estudo que também protege.</p>
+<p><strong>Alquimia.</strong> 1 poção por descanso (cura 1d6, ácido ou fumaça). Kit de três utilidades entre combates.</p>
+<p><strong>Catalisador.</strong> Poções curam +1d6 ou dobram duração. Multiplicador do que a Alquimia já preparou.</p>
+<p><strong>Dissipar.</strong> Cancela efeito mágico (INT vs potência). Tesoura arcana — dispute a CD com o poder do efeito.</p>
+<p><strong>Zona Anti-Magia.</strong> Raio 3 grid sem magia por 3 rodadas. Apaga o campo de batalha mágico — inimigo e aliado.</p>
+<p><strong>Ritual.</strong> 10 min: luz, selar ou mensagem a aliado. Magia utilitária lenta, barata em risco.</p>
+<p><strong>Reflexão.</strong> Quando você é alvo de magia, gaste 3 PM para refletir magia com metade do efeito. Não gasta ações — usa sua 1 resposta da rodada. Devolve parte do feitiço à origem.</p>
+<h3>💫 Véu (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Véu</div><div class="stp-meta">1 ação + 1 PM</div><div class="stp-detail">Enfeitiçado (TDD SAB) — ou ilusão menor 10 min.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sugestão</div><div class="stp-meta">2 ações + 2 PM · REQ Véu · INT 4</div><div class="stp-detail">Ordem simples (TDD SAB −2) / persuasão mágica 1 cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Dominar</div><div class="stp-meta">4 ações + 4 PM · REQ Sugestão · INT 8</div><div class="stp-detail">Controle 1 rodada (TDD SAB −4). Fora: 1 ordem curta.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ilusão Maior</div><div class="stp-meta">2 ações + 2 PM · REQ Véu · INT 5</div><div class="stp-detail">Ilusão interativa (TDD INT).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Miragem</div><div class="stp-meta">3 ações + 3 PM · REQ Ilusão Maior · INT 7</div><div class="stp-detail">3 cópias: 2 em 3 ataques erram você.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Inspirar</div><div class="stp-meta">1 ação + 1 PM · REQ Véu · INT 3</div><div class="stp-detail">Aliado +1d4 no próximo teste.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Aura Arcana</div><div class="stp-meta">2 ações + 2 PM · REQ Inspirar · INT 5</div><div class="stp-detail">Aliados a 2 grid: +1 em testes mágicos 1 cena.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Véu.</strong> Ilusão e fascínio: pode Enfeitiçar (TDD SAB) ou criar ilusão menor por 10 min. Enfeitiçado = não ataca o encantador; o encantador tem +2 contra o alvo.</p>
+<p><strong>Sugestão.</strong> Ordem simples (TDD SAB −2) ou persuasão mágica por 1 cena. Empurra decisões pequenas, não suicídio.</p>
+<p><strong>Dominar.</strong> Controle 1 rodada (TDD SAB −4). Fora: 1 ordem curta. Dominação pesada — CD alta, efeito curto.</p>
+<p><strong>Ilusão Maior.</strong> Ilusão interativa (TDD INT). Mais convincente que a menor — o alvo pode investigar e descrer.</p>
+<p><strong>Miragem.</strong> Cria 3 cópias ilusórias: em média 2 de cada 3 ataques contra você erram (acertam um clone). Controle de atenção no campo — some quando a ilusão é desfeita ou você é identificado.</p>
+<p><strong>Inspirar.</strong> Aliado +1d4 no próximo teste. Empurrãozinho de confiança.</p>
+<p><strong>Aura Arcana.</strong> Aliados a 2 grid: +1 em testes mágicos por 1 cena. Buff de círculo de magos.</p>
+<h2>Guarda</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> CON, SAB, FOR</p>
+<p>Proteger e sustentar. Muralha, Guardião, Sustento e Santuário — cada ramo aprofunda um estilo; forks dentro deles podem ser combinados se você seguir a ordem.</p>
+<h3>🧱 Muralha (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Muralha</div><div class="stp-meta">Passivo</div><div class="stp-detail">Ação reservada × 1,5 = bônus de CA (arred. baixo).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Bloqueio</div><div class="stp-meta">Quando atacado · REQ Muralha · CON 4</div><div class="stp-detail">−1d8+CON dano de 1 ataque.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Bloqueio Perfeito</div><div class="stp-meta">Quando atacado · 2 PM · REQ Bloqueio · CON 6</div><div class="stp-detail">Anula 1 ataque (1×/rodada).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fortaleza</div><div class="stp-meta">Passivo · REQ Bloqueio Perfeito · CON 8</div><div class="stp-detail">Ação reservada × 2; imune empurrão/queda.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Interceptar</div><div class="stp-meta">Quando aliado é atacado · REQ Muralha · CON 3</div><div class="stp-detail">Recebe ataque de aliado adjacente.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Último Bastião</div><div class="stp-meta">2 ações · REQ Interceptar · CON 7</div><div class="stp-detail">Intercepta a até 2 grid.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Postura</div><div class="stp-meta">1 ação · REQ Muralha · CON 4</div><div class="stp-detail">+2 CA; inimigos adjacentes −2 vs outros.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Inabalável</div><div class="stp-meta">Passivo · REQ Postura · CON 6</div><div class="stp-detail">Enquanto em Postura: imune a Empurrão.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Muralha.</strong> Defesa ativa: ações reservadas × 1,5 viram bônus de CA (arredonda para baixo). Você “paga” segurança com ações não gastas no fim do turno.</p>
+<p><strong>Bloqueio.</strong> Quando um ataque te acerta (ou está para acertar), você reduz o dano em 1d8+CON. Não gasta ações — usa sua 1 resposta da rodada. Não é ofensivo — é absorver o golpe no instante certo.</p>
+<p><strong>Bloqueio Perfeito.</strong> 1× por rodada, quando atacado, gaste 2 PM para anular completamente 1 ataque. Não gasta ações. A defesa definitiva — guarde para o golpe que mataria ou quebraria a formação.</p>
+<p><strong>Fortaleza.</strong> Ações reservadas valem o dobro para CA, e você fica imune a empurrão/queda enquanto mantiver a reserva. Torre humana.</p>
+<p><strong>Interceptar.</strong> Quando um aliado adjacente é atacado, você recebe o ataque no lugar dele. Não gasta ações — usa sua 1 resposta da rodada. Troca posição de risco — o dano vem para você para manter o companheiro de pé.</p>
+<p><strong>Último Bastião.</strong> Intercepta ataques destinados a aliados a até 2 grid (não só adjacentes). Amplia o alcance do sacrifício protetor.</p>
+<p><strong>Postura.</strong> Postura defensiva: +2 CA, e inimigos adjacentes têm −2 para acertar outros alvos. Você vira o “ímã” da linha de frente.</p>
+<p><strong>Inabalável.</strong> Enquanto estiver em Postura, empurrões não funcionam em você. Âncora no grid.</p>
+<h3>⚔️ Guardião (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Guardião</div><div class="stp-meta">1 ação</div><div class="stp-detail">Aura 1 grid: aliados +1 CA.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Provocar</div><div class="stp-meta">1 ação · REQ Guardião · CON 3 CAR 2</div><div class="stp-detail">Alvo deve atacá-lo ou fica Hesitante (TDD SAB).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Desafio</div><div class="stp-meta">2 ações · REQ Provocar · CON 5 CAR 3</div><div class="stp-detail">Até 3 alvos; falha = Amedrontado 1 rodada.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Aura Expandida</div><div class="stp-meta">2 ações · REQ Guardião · SAB 4</div><div class="stp-detail">Aura 2 grid: +1 CA e +1 resistências.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Égide</div><div class="stp-meta">4 ações · REQ Aura Expandida · SAB 8</div><div class="stp-detail">Aura: imune Amedrontado/Enfeitiçado.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Linha</div><div class="stp-meta">2 ações · REQ Guardião · CON 6</div><div class="stp-detail">Inimigos não atravessam você nem aliados adjacentes.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Muralha Viva</div><div class="stp-meta">Passivo · REQ Linha · CON 7</div><div class="stp-detail">Linha + aliados adjacentes +1 CA.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Guardião.</strong> Aura de 1 grid: aliados próximos ganham +1 CA. Você é o ponto âncora da linha defensiva.</p>
+<p><strong>Provocar.</strong> Taunt: o alvo deve atacá-lo ou fica Hesitante (TDD SAB). Hesitante = −2 no próximo ato hostil. Puxa aggro de forma mecânica.</p>
+<p><strong>Desafio.</strong> Provoca até 3 alvos; quem falha fica Amedrontado 1 rodada. Controle de medo em área curta.</p>
+<p><strong>Aura Expandida.</strong> Sua aura de Guardião cresce para 2 grid e ainda concede +1 em resistências. Mais gente coberta pela sua presença defensiva.</p>
+<p><strong>Égide.</strong> Sua aura torna aliados imunes a Amedrontado e Enfeitiçado. Moral inquebrável no bolsão defensivo.</p>
+<p><strong>Linha.</strong> Inimigos não atravessam você nem aliados adjacentes — bloqueio de passagem no grid, como uma muralha viva.</p>
+<p><strong>Muralha Viva.</strong> Combina Linha com +1 CA para aliados adjacentes. Formação de escudos personificada.</p>
+<h3>🏕️ Sustento (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Sustento</div><div class="stp-meta">1 ação</div><div class="stp-detail">Cura 1d4+CON. Combate: só em si 1×/rodada.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Vigília</div><div class="stp-meta">Passivo · REQ Sustento · CON 4</div><div class="stp-detail">Vigia e recupera ações; +2 percepção em guarda.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sentinela</div><div class="stp-meta">Passivo · REQ Vigília · CON 5 SAB 3</div><div class="stp-detail">Grupo não é surpreendido se você vigiar.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Toque</div><div class="stp-meta">2 ações · REQ Sustento · SAB 3</div><div class="stp-detail">Cura aliado 1d6+SAB; estabiliza feridos.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Cura em Massa</div><div class="stp-meta">3 ações · REQ Toque · SAB 5</div><div class="stp-detail">1d6+SAB em aliados a 2 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Renascimento</div><div class="stp-meta">5 ações · REQ Cura em Massa · SAB 8</div><div class="stp-detail">Aliado a 0 PV → 50% PV (1×/dia).</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Metabolismo</div><div class="stp-meta">Passivo · REQ Sustento · CON 6</div><div class="stp-detail">PV = CON no início do turno; imune veneno mundano.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Pele de Pedra</div><div class="stp-meta">2 ações · REQ Metabolismo · CON 5</div><div class="stp-detail">−3 dano físico 3 rodadas — ou resistência a clima 1 cena.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Sustento.</strong> Cura mundana 1d4+CON; em combate só em si, 1× por rodada. Sobrevivência de campo, não milagre espiritual.</p>
+<p><strong>Vigília.</strong> Vigília resolve este tipo de problema na mesa: Vigia e recupera ações; +2 percepção em guarda. Leia os números no efeito; aqui o foco é o “quando usar”.</p>
+<p><strong>Sentinela.</strong> Se você vigiar, o grupo não é surpreendido. Remove a vantagem de emboscada inimiga.</p>
+<p><strong>Toque.</strong> Cura aliado em 1d6+SAB e pode estabilizar feridos. Toque de campo — rápido o bastante para combate próximo.</p>
+<p><strong>Cura em Massa.</strong> 1d6+SAB em aliados a 2 grid — pulso de cura em equipe apertada.</p>
+<p><strong>Renascimento.</strong> 1× por dia: aliado a 0 PV volta com 50% dos PV. O “segundo fôlego” dramático do ramo Sustento.</p>
+<p><strong>Metabolismo.</strong> No início do turno recupera PV iguais à CON e fica imune a veneno mundano. Motor biológico de sobrevivência.</p>
+<p><strong>Pele de Pedra.</strong> −3 de dano físico por 3 rodadas, ou resistência a clima por 1 cena fora de combate. Endurecimento do corpo.</p>
+<h3>🕊️ Santuário (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Santuário</div><div class="stp-meta">1 ação</div><div class="stp-detail">Aura 1 grid +1 CA. Civis sob guarda não são prioridade hostil.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Escudo Civil</div><div class="stp-meta">1 ação · REQ Santuário · CON 4</div><div class="stp-detail">Protege não-combatente a 2 grid nesta cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Escolta</div><div class="stp-meta">Passivo · REQ Escudo Civil · CON 5</div><div class="stp-detail">Enquanto escolta: +2 CA ao civil.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Refúgio</div><div class="stp-meta">2 ações · REQ Santuário · SAB 4</div><div class="stp-detail">Marca local seguro: +2 em descanso curto ali.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Lar Temporário</div><div class="stp-meta">3 ações · REQ Refúgio · SAB 6</div><div class="stp-detail">Descanso longo possível em local hostil 1×/arco.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Juramento</div><div class="stp-meta">Passivo · REQ Santuário · SAB 5 CAR 3</div><div class="stp-detail">1 protegido: +1 CA enquanto a 3 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Voto Sagrado</div><div class="stp-meta">Passivo · REQ Juramento · SAB 7</div><div class="stp-detail">Se o protegido cair a 0: você age imediatamente (resposta grátis).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Santuário.</strong> Aura +1 CA a 1 grid; civis sob sua guarda deixam de ser prioridade hostil óbvia — proteção de pessoas, não só de soldados.</p>
+<p><strong>Escudo Civil.</strong> Nesta cena, protege um não-combatente a até 2 grid — prioridade narrativa de guardar civis.</p>
+<p><strong>Escolta.</strong> Enquanto escolta, o civil ganha +2 CA. Missão de proteção virando estatística.</p>
+<p><strong>Refúgio.</strong> Marca um local seguro: +2 em descanso curto ali. Acampamento ou esconderijo abençoado pela sua guarda.</p>
+<p><strong>Lar Temporário.</strong> 1× por arco permite descanso longo em local hostil. Acampar onde “não dá” — com risco narrativo residual a critério do mestre.</p>
+<p><strong>Juramento.</strong> Escolhe 1 protegido: +1 CA enquanto estiver a 3 grid. Vínculo de guarda pessoal.</p>
+<p><strong>Voto Sagrado.</strong> Se o protegido cair a 0 PV, você age imediatamente com resposta grátis. Gatilho dramático de salvador.</p>
+<h2>Trilha</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> DES, SAB</p>
+<p>Movimento e discrição. Sombra, Acrobata, Caminho e Multidão — ramos distintos; dentro de cada um, forks podem ser comprados em paralelo se a ordem for respeitada.</p>
+<h3>🌑 Sombra (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Sombra</div><div class="stp-meta">1 ação</div><div class="stp-detail">1 grid grátis após ataque. Fora: +2 furtividade na cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Assassino</div><div class="stp-meta">2 ações · REQ Sombra · DES 4</div><div class="stp-detail">Furtivo vs desprevenido: +2d6.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Assassinar</div><div class="stp-meta">3 ações · REQ Assassino · DES 7</div><div class="stp-detail">Vs surpreso = crítico; se matar, posição oculta.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Umbral</div><div class="stp-meta">2 ações · REQ Sombra · SAB 5</div><div class="stp-detail">Teleporte 3 grid entre sombras (pode fora do turno).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Forma Sombria</div><div class="stp-meta">3 ações · REQ Umbral · SAB 8</div><div class="stp-detail">Intangível 1 rodada / atravessa fresta 1 cena.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Silêncio</div><div class="stp-meta">2 ações · REQ Sombra · DES 5</div><div class="stp-detail">Golpe não alerta a 6 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Apagar Rastros</div><div class="stp-meta">1 ação · REQ Silêncio · SAB 6</div><div class="stp-detail">Furtividade: vantagem nesta cena.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Sombra.</strong> Após atacar, move 1 grid grátis. Fora de combate, +2 em furtividade na cena. Ritmo hit-and-fade.</p>
+<p><strong>Assassino.</strong> Contra desprevenido, +2d6 de dano furtivo. Emboscada clássica — posicione stealth antes do golpe.</p>
+<p><strong>Assassinar.</strong> Contra surpreso = crítico; se matar, permanece oculto. Execução e sumiço.</p>
+<p><strong>Umbral.</strong> Teleporta 3 grid entre sombras (pode ser resposta). Mobilidade sobrenatural de assassino urbano.</p>
+<p><strong>Forma Sombria.</strong> 1 rodada intangível, ou atravessa frestas por 1 cena fora de combate. Contorna portas e grades.</p>
+<p><strong>Silêncio.</strong> O golpe não alerta criaturas a 6 grid. Eliminação limpa sem chamar reforços.</p>
+<p><strong>Apagar Rastros.</strong> Vantagem em furtividade nesta cena — limpa evidências e passos.</p>
+<h3>🤸 Acrobata (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Acrobata</div><div class="stp-meta">1 ação</div><div class="stp-detail">Desengajar como parte do movimento (sem AO).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Esquiva</div><div class="stp-meta">Quando atacado · REQ Acrobata · DES 4</div><div class="stp-detail">+3 CA vs 1 ataque.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Esquiva Perfeita</div><div class="stp-meta">2 ações · REQ Esquiva · DES 6</div><div class="stp-detail">Se errar: move 2 grid sem AO.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Reflexos</div><div class="stp-meta">Passivo · REQ Esquiva Perfeita · DES 8</div><div class="stp-detail">Nunca surpreso; +2 esquiva.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Parkour</div><div class="stp-meta">1 ação · REQ Acrobata · DES 5</div><div class="stp-detail">Paredes 4 grid; ignora terreno difícil.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Golpe Aéreo</div><div class="stp-meta">3 ações · REQ Parkour · DES 7</div><div class="stp-detail">Salta 3 grid + ataca +3d6; sem AO ao sair.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Momentum</div><div class="stp-meta">1 ação · REQ Acrobata · DES 6</div><div class="stp-detail">+2 dano / 2 grid movidos (máx +6).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rajada Cinética</div><div class="stp-meta">2 ações · REQ Momentum · DES 7</div><div class="stp-detail">Após mover 4+ grid: ataque em área 1 grid.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Acrobata.</strong> Desengajar vem embutido no movimento: você sai do corpo a corpo sem gastar a ação de desengajar e sem provocar AO.</p>
+<p><strong>Esquiva.</strong> Quando atacado: +3 CA contra 1 ataque. Não gasta ações — usa sua 1 resposta da rodada. Desvio no último instante.</p>
+<p><strong>Esquiva Perfeita.</strong> Se o ataque errar, você move 2 grid sem AO. Erro inimigo vira reposicionamento grátis.</p>
+<p><strong>Reflexos.</strong> Nunca surpreso e +2 em esquiva. Sempre no pé da frente.</p>
+<p><strong>Parkour.</strong> Corre em paredes (4 grid) e ignora terreno difícil. Mobilidade vertical e urbana.</p>
+<p><strong>Golpe Aéreo.</strong> Salta 3 grid, ataca com +3d6 e sai sem AO. Dive-kick tático.</p>
+<p><strong>Momentum.</strong> Quanto mais você corre antes de bater, mais dói: +2 dano por 2 grid movidos (máx +6).</p>
+<p><strong>Rajada Cinética.</strong> Após mover 4+ grid, ataca em área de 1 grid. Corrida que explode no impacto.</p>
+<h3>🧭 Caminho (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Caminho</div><div class="stp-meta">1 ação</div><div class="stp-detail">Detecta armadilhas a 3 grid. Viagem: ignora 1 terreno difícil.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Desarme</div><div class="stp-meta">1 ação · REQ Caminho · DES 4</div><div class="stp-detail">Armadilha/fechadura (DES). Combate: desarma arma.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Mestre de Mecanismos</div><div class="stp-meta">Passivo · REQ Desarme · DES 6</div><div class="stp-detail">+2 desarme; 1 falha/cena vira sucesso parcial.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Escapismo</div><div class="stp-meta">2 ações · REQ Caminho · DES 6</div><div class="stp-detail">Livre de grilhões/Agarrado 1×/cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fuga Perfeita</div><div class="stp-meta">1 ação · REQ Escapismo · DES 7</div><div class="stp-detail">Desengajar + 2 grid grátis.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Guia</div><div class="stp-meta">Passivo · REQ Caminho · SAB 5</div><div class="stp-detail">Grupo +25% velocidade de viagem.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Instinto</div><div class="stp-meta">2 ações · REQ Guia · SAB 7</div><div class="stp-detail">Evita armadilha/emboscada 1×/combate.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Caminho.</strong> Detecta armadilhas a 3 grid. Em viagem, ignora 1 terreno difícil — o guia que lê o chão antes do grupo pisar nele.</p>
+<p><strong>Desarme.</strong> Fora: abre armadilha/fechadura (DES). Em combate: desarma a arma do oponente. Mãos treinandas.</p>
+<p><strong>Mestre de Mecanismos.</strong> +2 para desarmar; 1 falha por cena vira sucesso parcial. Menos “explodiu na cara”.</p>
+<p><strong>Escapismo.</strong> 1× por cena: livre de grilhões ou da condição Agarrado. Carta de fuga.</p>
+<p><strong>Fuga Perfeita.</strong> Desengaja e ainda ganha 2 grid grátis. Saída limpa do corpo a corpo.</p>
+<p><strong>Guia.</strong> Grupo +25% velocidade de viagem. Chega antes — ou foge mais longe.</p>
+<p><strong>Instinto.</strong> 1× por combate evita armadilha ou emboscada. Sexto sentido de sobrevivente.</p>
+<h3>👥 Multidão (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Multidão</div><div class="stp-meta">1 ação</div><div class="stp-detail">+2 engano/furtividade social em multidão.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Mimetismo</div><div class="stp-meta">1 ação · REQ Multidão · SAB 4</div><div class="stp-detail">Imita sotaque/postura observada na cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Persona</div><div class="stp-meta">2 ações · REQ Mimetismo · SAB 6 CAR 3</div><div class="stp-detail">Mantém disfarce social 1 dia (CD SAB).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Mãos Rápidas</div><div class="stp-meta">Passivo · REQ Multidão · DES 6</div><div class="stp-detail">Item como parte de ação; +2 furto.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Truque de Mão</div><div class="stp-meta">1 ação · REQ Mãos Rápidas · DES 7</div><div class="stp-detail">Rouba/planta item miúdo sem teste se ninguém observar.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sem Rastros</div><div class="stp-meta">2 ações · REQ Multidão · SAB 6</div><div class="stp-detail">Ação sem testemunhas óbvias (CD SAB).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sumir</div><div class="stp-meta">3 ações · REQ Sem Rastros · SAB 8</div><div class="stp-detail">Em multidão: fica Indetectável 1 cena ou até atacar.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Multidão.</strong> +2 em engano/furtividade social em multidão: desaparecer no povo, mentir no mercado, cruzar um portão lotado.</p>
+<p><strong>Mimetismo.</strong> Mimetismo resolve este tipo de problema na mesa: Imita sotaque/postura observada na cena. Leia os números no efeito; aqui o foco é o “quando usar”.</p>
+<p><strong>Persona.</strong> Ferramenta de infiltração/discreção: Mantém disfarce social 1 dia (CD SAB).</p>
+<p><strong>Mãos Rápidas.</strong> Manipula item como parte da ação e +2 em furto. Prestidigitação útil em combate e crime.</p>
+<p><strong>Truque de Mão.</strong> Rouba ou planta item miúdo sem teste se ninguém estiver observando. Regra de ouro do batedor de carteira.</p>
+<p><strong>Sem Rastros.</strong> Ação sem testemunhas óbvias (CD SAB dos observadores). Crime limpo.</p>
+<p><strong>Sumir.</strong> Em multidão: Indetectável por 1 cena ou até atacar. Mergulho no povo.</p>
+<h2>Insight</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> SAB, INT, DES</p>
+<p>Leitura e planos. Estrategista, Armadilheiro, Investigação e Leitura — cada caminho tem forks próprios que você pode combinar gastando PD.</p>
+<h3>♟️ Estrategista (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Estrategista</div><div class="stp-meta">1 ação</div><div class="stp-detail">Revela 1 fraqueza/turno — ou 1 leverage fora de combate.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Análise</div><div class="stp-meta">1 ação · REQ Estrategista · INT 4</div><div class="stp-detail">CA/PV/resistências — ou 1 fato oculto.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Explorar</div><div class="stp-meta">2 ações · REQ Análise · INT 5</div><div class="stp-detail">+2 acerto e ignora resistências vs analisado.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Leitura Perfeita</div><div class="stp-meta">3 ações · REQ Explorar · INT 7</div><div class="stp-detail">Mestre declara 2 próximas ações do inimigo/NPC.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ordem</div><div class="stp-meta">1 ação · REQ Estrategista · SAB 4</div><div class="stp-detail">Aliado move 1 grid fora do turno sem AO.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Coordenação</div><div class="stp-meta">2 ações · REQ Ordem · SAB 6</div><div class="stp-detail">2 aliados +2 acerto — ou +2 teste social conjunto.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Investida</div><div class="stp-meta">4 ações · REQ Coordenação · SAB 8</div><div class="stp-detail">Aliados movem 2 grid +2 acerto 1 rodada.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Comando</div><div class="stp-meta">2 ações · REQ Estrategista · SAB 4</div><div class="stp-detail">Aliado faz 1 ataque fora do turno.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Comando Duplo</div><div class="stp-meta">3 ações · REQ Comando · SAB 6</div><div class="stp-detail">2 aliados atacam fora do turno.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Estrategista.</strong> Cada turno revela 1 fraqueza (ou 1 leverage fora de combate). Informação tática vira vantagem — o mestre nomeia o que você enxerga.</p>
+<p><strong>Análise.</strong> Revela CA/PV/resistências — ou 1 fato oculto fora de combate. Escaneamento tático.</p>
+<p><strong>Explorar.</strong> Contra alvo já analisado: +2 acerto e ignora resistências. Punir a fraqueza que você mapeou.</p>
+<p><strong>Leitura Perfeita.</strong> O mestre declara as 2 próximas ações do inimigo/NPC. Informação quase injusta — use para armar contra-jogadas.</p>
+<p><strong>Ordem.</strong> Aliado move 1 grid fora do turno sem AO. Comando de reposicionamento.</p>
+<p><strong>Coordenação.</strong> 2 aliados +2 acerto, ou +2 em teste social conjunto. Timing de equipe.</p>
+<p><strong>Investida.</strong> Aliados avançam 2 grid com +2 acerto por 1 rodada. Ordem de carga.</p>
+<p><strong>Comando.</strong> Aliado faz 1 ataque fora do turno. Você gasta a voz; ele gasta o golpe.</p>
+<p><strong>Comando Duplo.</strong> 2 aliados atacam fora do turno. Maestro de campo de batalha.</p>
+<h3>🪤 Armadilheiro (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Armadilheiro</div><div class="stp-meta">2 ações</div><div class="stp-detail">Armadilha 1d8 + prende.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Aprimorada</div><div class="stp-meta">2 ações · REQ Armadilheiro · INT 4</div><div class="stp-detail">2d6 + lento ou agarrado.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Zona</div><div class="stp-meta">4 ações · REQ Aprimorada · INT 6</div><div class="stp-detail">3 armadilhas em 4 grid (prep).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Campo Minado</div><div class="stp-meta">5 ações · REQ Zona · INT 8</div><div class="stp-detail">6 grid: 3d8/quadrado (prep longa).</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Elemental</div><div class="stp-meta">2 ações + 1 PM · REQ Armadilheiro · INT 5</div><div class="stp-detail">2d6 fogo/gelo/raio.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Explosiva</div><div class="stp-meta">3 ações + 2 PM · REQ Elemental · INT 7</div><div class="stp-detail">3d6 área 2 grid ao disparar.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Arcana</div><div class="stp-meta">3 ações + 2 PM · REQ Armadilheiro · INT 6</div><div class="stp-detail">Enfeitiça ou Paralisa (TDD SAB).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Runa de Contenção</div><div class="stp-meta">3 ações + 3 PM · REQ Arcana · INT 7</div><div class="stp-detail">Prende 1h fora de combate (TDD).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Armadilheiro.</strong> Prepara armadilha (1d8 + prende). Combate e emboscada: você molda o terreno antes da luta começar.</p>
+<p><strong>Aprimorada.</strong> Armadilha melhor: 2d6 e deixa lento ou agarrado. Controle além do dano.</p>
+<p><strong>Zona.</strong> Prepara 3 armadilhas em 4 grid. Campo minado tático (exige preparo).</p>
+<p><strong>Campo Minado.</strong> Preparação longa: 6 grid com 3d8 por quadrado. Armadilha de capítulo, não de rodada.</p>
+<p><strong>Elemental.</strong> Armadilha elemental (fogo/gelo/raio) 2d6. Escolha o elemento que fura a resistência do inimigo.</p>
+<p><strong>Explosiva.</strong> Ao disparar, explode 3d6 em área 2 grid. Sacrifica sutileza por área.</p>
+<p><strong>Arcana.</strong> Armadilha mágica: Enfeitiça ou Paralisa (TDD SAB). Controle mental no gatilho.</p>
+<p><strong>Runa de Contenção.</strong> Fora de combate, prende alvo por 1h (TDD). Prisão ritual temporária.</p>
+<h3>🕵️ Investigação (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Investigação</div><div class="stp-meta">1 ação</div><div class="stp-detail">1 pista relevante sem teste na cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Deduzir</div><div class="stp-meta">1 ação · REQ Investigação · INT 4</div><div class="stp-detail">Conecta 2 pistas; mestre confirma/corrige.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Eureka</div><div class="stp-meta">2 ações · REQ Deduzir · INT 6</div><div class="stp-detail">1×/cena: mestre revela se uma hipótese está certa.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Plano</div><div class="stp-meta">2 ações · REQ Investigação · INT 6</div><div class="stp-detail">Antes de missão: grupo +1 em 3 testes.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Plano Perfeito</div><div class="stp-meta">3 ações · REQ Plano · INT 8</div><div class="stp-detail">Grupo: vantagem no 1º teste da missão.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Arquivo</div><div class="stp-meta">Passivo · REQ Investigação · INT 4 SAB 3</div><div class="stp-detail">Em cidade: documento/boato em 1 hora.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rede de Arquivos</div><div class="stp-meta">Passivo · REQ Arquivo · INT 6</div><div class="stp-detail">1 informante acadêmico/cidade.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Investigação.</strong> Na cena, obtém 1 pista relevante sem teste — o olhar treinado corta ruído e aponta o detalhe que importa.</p>
+<p><strong>Deduzir.</strong> Conecta 2 pistas; o mestre confirma ou corrige. Evita teoria da conspiração inútil.</p>
+<p><strong>Eureka.</strong> 1× por cena: o mestre diz se uma hipótese sua está certa. Corte o looping de achismos.</p>
+<p><strong>Plano.</strong> Antes da missão, o grupo ganha +1 em 3 testes. Planejamento que vira bônus concreto.</p>
+<p><strong>Plano Perfeito.</strong> Grupo com vantagem no 1º teste da missão. Começo com o pé direito.</p>
+<p><strong>Arquivo.</strong> Em cidade, acha documento ou boato em 1 hora. Pesquisa urbana.</p>
+<p><strong>Rede de Arquivos.</strong> 1 informante acadêmico por cidade. Contato fixo de biblioteca/arquivo.</p>
+<h3>🏛️ Leitura (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Leitura</div><div class="stp-meta">1 ação</div><div class="stp-detail">Lê emoção/intenção (SAB vs CAR).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Pressão</div><div class="stp-meta">2 ações · REQ Leitura · SAB 4</div><div class="stp-detail">−2 no próximo teste social do alvo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Máscara</div><div class="stp-meta">1 ação · REQ Pressão · CAR 4 SAB 3</div><div class="stp-detail">+2 engano; parece alinhado a facção 1 cena.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Contatos</div><div class="stp-meta">Passivo · REQ Leitura · CAR 3 INT 4</div><div class="stp-detail">1 informante por cidade visitada.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Teia Política</div><div class="stp-meta">3 ações · REQ Contatos · SAB 7 CAR 5</div><div class="stp-detail">1×/arco: reescreve 1 rumore (CD 18).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Farol</div><div class="stp-meta">1 ação · REQ Leitura · SAB 5</div><div class="stp-detail">Sabe se alguém mente nesta cena (SAB vs CAR).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Veredito</div><div class="stp-meta">2 ações · REQ Farol · SAB 7</div><div class="stp-detail">Mestre confirma se um NPC é aliado/hostil secreto.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Leitura.</strong> Lê emoção/intenção (SAB vs CAR do alvo). Ferramenta de interrogatório e diplomacia: o mestre descreve o que o corpo entrega.</p>
+<p><strong>Pressão.</strong> −2 no próximo teste social do alvo. Você abala a compostura dele antes da falha crítica.</p>
+<p><strong>Máscara.</strong> +2 engano e parece alinhado a uma facção por 1 cena. Infiltração política.</p>
+<p><strong>Contatos.</strong> 1 informante por cidade visitada. Rede de rua que cresce com a campanha.</p>
+<p><strong>Teia Política.</strong> 1× por arco: reescreve 1 rumor (CD 18). Manipula a narrativa da cidade.</p>
+<p><strong>Farol.</strong> Nesta cena, sabe se alguém mente (SAB vs CAR). Detector de mentira narrativo.</p>
+<p><strong>Veredito.</strong> O mestre confirma se um NPC é aliado ou hostil secreto. Corta suspense tóxico quando a mesa precisa da verdade.</p>
+<h2>Voz</h2>
+<p><strong>Pilares:</strong> Combate, Mundo, Almas</p>
+<p><strong>Atributos:</strong> CAR, SAB</p>
+<p>Presença e espírito. Guerra, Orador, Palco e Elo — estilos de medo, coragem, performance e cura; forks não se excluem entre si.</p>
+<h3>😠 Presença de Guerra (Combate)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Presença de Guerra</div><div class="stp-meta">1 ação</div><div class="stp-detail">CAR vs SAB: Hesitante. Fora: abre/fecha porta social.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Amedrontar</div><div class="stp-meta">2 ações · REQ Presença de Guerra · CAR 4</div><div class="stp-detail">Amedrontado 2 rodadas (TDD SAB).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Terror</div><div class="stp-meta">3 ações · REQ Amedrontar · CAR 6</div><div class="stp-detail">Inimigos a 3 grid Amedrontados (TDD SAB −2).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Presença Aterrorizante</div><div class="stp-meta">Passivo · REQ Terror · CAR 8</div><div class="stp-detail">Adjacentes: TDD SAB ou Hesitante.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Coragem</div><div class="stp-meta">2 ações · REQ Presença de Guerra · CAR 4</div><div class="stp-detail">Aliados 3 grid: imunes Amedrontado; +1 acerto 3 rodadas.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Inspiração Heroica</div><div class="stp-meta">3 ações · REQ Coragem · CAR 7</div><div class="stp-detail">Aliado ganha turno extra (1×/combate/aliado).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Quebrar Moral</div><div class="stp-meta">2 ações · REQ Presença de Guerra · CAR 5</div><div class="stp-detail">Remove buffs; −1 em testes 3 rodadas.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Desespero</div><div class="stp-meta">3 ações · REQ Quebrar Moral · CAR 7</div><div class="stp-detail">Alvo não recebe buffs/cura 3 rodadas (TDD SAB −2).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Presença de Guerra.</strong> CAR vs SAB deixa Hesitante. Fora de combate, abre ou fecha uma “porta social” (acesso a alguém, silêncio na sala, ordem dada por autoridade de guerra).</p>
+<p><strong>Amedrontar.</strong> Amedrontado por 2 rodadas (TDD SAB). Medo sustentado — trava investidas contra você.</p>
+<p><strong>Terror.</strong> Inimigos a 3 grid Amedrontados (TDD SAB −2). Onda de pânico.</p>
+<p><strong>Presença Aterrorizante.</strong> Adjacentes: TDD SAB ou Hesitante. Aura curta de intimidação constante.</p>
+<p><strong>Coragem.</strong> Aliados a 3 grid imunes a Amedrontado e +1 acerto por 3 rodadas. Grito de guerra positivo.</p>
+<p><strong>Inspiração Heroica.</strong> 1× por combate por aliado: concede um turno extra. O buff mais generoso de ação do sistema — use no clutch.</p>
+<p><strong>Quebrar Moral.</strong> Remove buffs do alvo e aplica −1 em testes por 3 rodadas. Demolição psicológica.</p>
+<p><strong>Desespero.</strong> Alvo não recebe buffs/cura por 3 rodadas (TDD SAB −2). Isola o inimigo dos supports.</p>
+<h3>🎤 Orador (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Orador</div><div class="stp-meta">1 ação</div><div class="stp-detail">+2 CAR em discursos/julgamentos nesta cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Argumento</div><div class="stp-meta">1 ação · REQ Orador · CAR 4 INT 2</div><div class="stp-detail">Revela falha lógica do oponente (mestre).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Decreto</div><div class="stp-meta">3 ações · REQ Argumento · CAR 7</div><div class="stp-detail">NPC inferior obedece ordem não-suicida (TDD CAR, 1×/cena).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Acalmar</div><div class="stp-meta">2 ações · REQ Orador · CAR 5</div><div class="stp-detail">Remove Hesitante/Amedrontado de aliados a 3 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Mediação</div><div class="stp-meta">3 ações · REQ Acalmar · CAR 6</div><div class="stp-detail">Encerra conflito social não-violento (CD 16 CAR).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Voz da Lei</div><div class="stp-meta">Passivo · REQ Orador · CAR 8</div><div class="stp-detail">1 julgamento a favor/arco em assentamento (CD 16).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Edito</div><div class="stp-meta">4 ações · REQ Voz da Lei · CAR 8</div><div class="stp-detail">Plateia grande muda de humor (CD 18).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Orador.</strong> +2 CAR em discursos e julgamentos nesta cena — voz pública, tribunal, praça, conselho.</p>
+<p><strong>Argumento.</strong> Revela falha lógica do oponente (mestre narra). Arma de debate, não de lâmina.</p>
+<p><strong>Decreto.</strong> 1× por cena: NPC inferior obedece ordem não-suicida (TDD CAR). Autoridade hierárquica.</p>
+<p><strong>Acalmar.</strong> Remove Hesitante/Amedrontado de aliados a 3 grid. Reset de moral.</p>
+<p><strong>Mediação.</strong> Encerra conflito social não-violento (CD 16 CAR). Termina a discussão antes dos punhos.</p>
+<p><strong>Voz da Lei.</strong> 1 julgamento a favor por arco em assentamento (CD 16). Advocacia com peso mecânico.</p>
+<p><strong>Edito.</strong> Muda o humor de uma plateia grande (CD 18). Discurso de massa.</p>
+<h3>🎭 Palco (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Palco</div><div class="stp-meta">1 ação</div><div class="stp-detail">Performance +2 CAR. Combate: aliado +1d4 em 1 teste.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Rede</div><div class="stp-meta">Passivo · REQ Palco · CAR 4</div><div class="stp-detail">Boatos em 1h; 1 favor menor/cidade/arco.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fama</div><div class="stp-meta">Passivo · REQ Rede · CAR 7</div><div class="stp-detail">Reconhecido onde atuou.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Voz do Comando</div><div class="stp-meta">1 ação · REQ Palco · CAR 5</div><div class="stp-detail">Aliado repete resistência — ou NPC reavalia recusa.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Discurso</div><div class="stp-meta">3 ações · REQ Voz do Comando · CAR 6</div><div class="stp-detail">Aliados a 6 grid: +1 ação temp — ou muda humor de plateia.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Espetáculo</div><div class="stp-meta">2 ações · REQ Palco · CAR 5</div><div class="stp-detail">Distrai multidão: aliados +2 furtividade 1 cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Bis</div><div class="stp-meta">Passivo · REQ Espetáculo · CAR 7</div><div class="stp-detail">Repete efeito de Palco sem custo 1×/cena.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Palco.</strong> Performance dá +2 CAR; em combate, um aliado ganha +1d4 em 1 teste. Arte que inspira ou distrai.</p>
+<p><strong>Rede.</strong> Espalha boatos em 1h; 1 favor menor por cidade por arco. Influência de corredor.</p>
+<p><strong>Fama.</strong> Reconhecido onde já atuou. Porta social permanente — nem sempre positiva.</p>
+<p><strong>Voz do Comando.</strong> Aliado repete uma resistência, ou NPC reavalia uma recusa. Segunda chance social/tática.</p>
+<p><strong>Discurso.</strong> Aliados a 6 grid ganham +1 ação temporária, ou muda humor de plateia. Pico oratório.</p>
+<p><strong>Espetáculo.</strong> Distrai a multidão: aliados +2 furtividade por 1 cena. Palco como cobertura.</p>
+<p><strong>Bis.</strong> 1× por cena repete o efeito de Palco sem custo. Encore.</p>
+<h3>🕊️ Elo (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Elo</div><div class="stp-meta">1 ação + 1 PM</div><div class="stp-detail">Cura 1d6+CAR — ou 1 pergunta a espírito residual.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Cura Espiritual</div><div class="stp-meta">2 ações + 2 PM · REQ Elo · CAR 4</div><div class="stp-detail">2d6+CAR a 3 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Cura Maior</div><div class="stp-meta">3 ações + 3 PM · REQ Cura Espiritual · CAR 6</div><div class="stp-detail">3d8+CAR e remove 1 condição.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Restauração Completa</div><div class="stp-meta">5 ações + 5 PM · REQ Cura Maior · CAR 8</div><div class="stp-detail">Cura total + remove condições (1×/dia).</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Negociação</div><div class="stp-meta">1 ação · REQ Elo · CAR 4</div><div class="stp-detail">+2 CAR e revela preço mínimo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Acordo</div><div class="stp-meta">2 ações · REQ Negociação · CAR 6</div><div class="stp-detail">Fecha trato justo: ambos ganham 1 benefício narrativo.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Exorcismo</div><div class="stp-meta">3 ações + 3 PM · REQ Elo · SAB 6</div><div class="stp-detail">Remove possessão/Enfeitiçado; 2d8 vs mortos-vivos.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Purificação</div><div class="stp-meta">1 ação + 1 PM · REQ Exorcismo · SAB 4</div><div class="stp-detail">Remove Envenenado, doença, maldição leve.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Elo.</strong> Cura 1d6+CAR ou faz 1 pergunta a um espírito residual. Ponte entre vivos e o que ficou para trás.</p>
+<p><strong>Cura Espiritual.</strong> Cura 2d6+CAR a 3 grid. Canal de Elo à distância.</p>
+<p><strong>Cura Maior.</strong> 3d8+CAR e remove 1 condição. Cura séria de mid-game.</p>
+<p><strong>Restauração Completa.</strong> 1× por dia: cura total + remove condições. O milagre do Elo — guarde para o clímax.</p>
+<p><strong>Negociação.</strong> +2 CAR e revela o preço mínimo. Você sabe até onde o outro pode ceder.</p>
+<p><strong>Acordo.</strong> Fecha trato justo: ambos ganham 1 benefício narrativo. Barganha em que ninguém sai enganado (e o mestre formaliza os benefícios).</p>
+<p><strong>Exorcismo.</strong> Remove possessão/Enfeitiçado e causa 2d8 vs mortos-vivos. Limpeza espiritual ofensiva.</p>
+<p><strong>Purificação.</strong> Remove Envenenado, doença ou maldição leve. Limpeza sem ser a cura total.</p>
+<h2>Ofício</h2>
+<p><strong>Pilares:</strong> Mundo, Almas, Combate</p>
+<p><strong>Atributos:</strong> DES, INT, CAR, SAB</p>
+<p>Perícias de vida civil: arte, artesanato, herbário/cozinha e comércio. Quase nada aqui é feito para matar — é para viver, criar e negociar.</p>
+<h3>🎨 Artes (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Artes</div><div class="stp-meta">Passivo</div><div class="stp-detail">+2 em criação artística (música, pintura, escultura, dança, escrita). 1 obra menor por descanso longo.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Música</div><div class="stp-meta">1 ação · REQ Artes · CAR 3</div><div class="stp-detail">Performance: +2 CAR na cena; acalma ou anima plateia (CD 12).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Balada</div><div class="stp-meta">2 ações · REQ Música · CAR 5</div><div class="stp-detail">Aliados a 6 grid: +1 em 1 teste nesta cena — ou remove Hesitante.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Obra-Prima</div><div class="stp-meta">3 ações · REQ Balada · CAR 7</div><div class="stp-detail">1×/arco: peça que concede favor de um NPC influente.</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Pintura</div><div class="stp-meta">1 ação · REQ Artes · DES 3</div><div class="stp-detail">Retrato/mapa: +2 negociação com o presenteado.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Ilustração</div><div class="stp-meta">1 ação · REQ Pintura · DES 4 INT 2</div><div class="stp-detail">Desenha cena/rosto visto: +2 Investigação do grupo.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Letras</div><div class="stp-meta">1 ação · REQ Artes · INT 3 CAR 2</div><div class="stp-detail">Contrato, poema ou panfleto: +2 em teste social escrito.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Manuscrito</div><div class="stp-meta">3 ações · REQ Letras · INT 5 CAR 5</div><div class="stp-detail">1×/arco: texto muda humor de um bairro (CD 16).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Artes.</strong> +2 em criação artística e 1 obra menor por descanso longo. Perícia de vida civil: música, pintura, escultura, dança, escrita.</p>
+<p><strong>Música.</strong> Performance: +2 CAR na cena; acalma ou anima plateia (CD 12). Trilha sonora que muda o humor da sala.</p>
+<p><strong>Balada.</strong> Aliados a 6 grid: +1 em 1 teste nesta cena — ou remove Hesitante. Canção de suporte.</p>
+<p><strong>Obra-Prima.</strong> 1× por arco: peça que concede favor de um NPC influente. Arte que abre portas de poder.</p>
+<p><strong>Pintura.</strong> Retrato ou mapa presenteado: +2 em negociação com quem recebeu. Arte como presente político.</p>
+<p><strong>Ilustração.</strong> Desenha cena/rosto visto: +2 Investigação do grupo. Memória visual compartilhada.</p>
+<p><strong>Letras.</strong> Contrato, poema ou panfleto: +2 em teste social escrito. A palavra no papel pesa.</p>
+<p><strong>Manuscrito.</strong> 1× por arco: texto muda humor de um bairro (CD 16). Propaganda literária.</p>
+<h3>🪵 Artesanato (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Artesanato</div><div class="stp-meta">Passivo</div><div class="stp-detail">+2 fabricar/reparar itens mundanos (roupa, móvel, ferramenta, joia). 1 reparo/descanso.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Alfaiate</div><div class="stp-meta">1 ação · REQ Artesanato · DES 3</div><div class="stp-detail">Adapta roupa: disfarce +2 por 1 dia.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Traje Nobre</div><div class="stp-meta">2 ações · REQ Alfaiate · DES 5 CAR 3</div><div class="stp-detail">Traje: +2 CAR em cortes 1 cena.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Marceneiro</div><div class="stp-meta">2 ações · REQ Artesanato · DES 3 FOR 2</div><div class="stp-detail">Ferramenta/arma improvisada 1d6 ou barricada 2 grid.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Obra Estrutural</div><div class="stp-meta">2 ações · REQ Marceneiro · DES 5</div><div class="stp-detail">Reforça porta/ponte: +10 PV de objeto.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Joalheiro</div><div class="stp-meta">1 ação · REQ Artesanato · DES 4 INT 2</div><div class="stp-detail">Avalia gemas; cria joia +2 CAR social 1 cena.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Sinete</div><div class="stp-meta">2 ações · REQ Joalheiro · DES 6 INT 3</div><div class="stp-detail">Selo difícil de forjar (CD 18 para copiar).</div></div></div></div></div></div>
+</div>
+
+<p><strong>Artesanato.</strong> +2 para fabricar/reparar itens mundanos e 1 reparo por descanso. Roupa, móvel, ferramenta, joia — o fazer com as mãos.</p>
+<p><strong>Alfaiate.</strong> Adapta roupa: +2 disfarce por 1 dia. Costura a serviço da mentira.</p>
+<p><strong>Traje Nobre.</strong> Traje: +2 CAR em cortes por 1 cena. Você “parece” pertencente.</p>
+<p><strong>Marceneiro.</strong> Cria ferramenta/arma improvisada 1d6 ou barricada 2 grid. Madeira vira solução imediata.</p>
+<p><strong>Obra Estrutural.</strong> Reforça porta/ponte: +10 PV do objeto. Engenharia de emergência.</p>
+<p><strong>Joalheiro.</strong> Avalia gemas; cria joia que dá +2 CAR social por 1 cena. Brilho que abre bocas.</p>
+<p><strong>Sinete.</strong> Selo difícil de forjar (CD 18 para copiar). Autenticidade documental.</p>
+<h3>🌿 Herbário (Mundo)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Herbário</div><div class="stp-meta">Passivo</div><div class="stp-detail">+2 plantas, remédio mundano e cozinha. Grupo se alimenta bem no acampamento.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Cozinha</div><div class="stp-meta">1 ação · REQ Herbário · SAB 2</div><div class="stp-detail">Refeição: grupo +2 PV no proximo descanso curto.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Banquete</div><div class="stp-meta">2 ações · REQ Cozinha · SAB 4</div><div class="stp-detail">1×/dia: remove 1 Exausto de até 4 aliados (1h).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Remédio</div><div class="stp-meta">1 ação · REQ Herbário · SAB 3 INT 2</div><div class="stp-detail">Cura 1d4+SAB ou estabiliza fora de combate.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Antídoto</div><div class="stp-meta">2 ações · REQ Remédio · SAB 5</div><div class="stp-detail">Remove Envenenado ou doença leve.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Pomada</div><div class="stp-meta">2 ações · REQ Antídoto · SAB 6</div><div class="stp-detail">Cura 2d6 fora de combate (1×/descanso).</div></div></div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Colheita</div><div class="stp-meta">1 ação · REQ Herbário · SAB 4</div><div class="stp-detail">Ingredientes em 1h de busca (CD 14).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Preparados</div><div class="stp-meta">2 ações · REQ Colheita · INT 4 SAB 4</div><div class="stp-detail">1 dose: sono, vigor (+1 teste) ou veneno fraco 1d4.</div></div></div></div></div></div>
+</div>
+
+<p><strong>Herbário.</strong> +2 em plantas, remédio mundano e cozinha; o grupo se alimenta bem no acampamento. Sobrevivência e cuidado sem magia.</p>
+<p><strong>Cozinha.</strong> Refeição: grupo +2 PV no próximo descanso curto. Comida como buffer de PV.</p>
+<p><strong>Banquete.</strong> 1× por dia, uma refeição elaborada remove 1 nível de Exausto de até 4 aliados (leva 1 hora). Exausto acumula penalidades em todos os testes; isto é recuperação social/culinária, não cura de combate.</p>
+<p><strong>Remédio.</strong> Cura 1d4+SAB ou estabiliza fora de combate. Kit de ervas, não milagre de Elo.</p>
+<p><strong>Antídoto.</strong> Remove Envenenado ou doença leve. Resposta direta a toxinas.</p>
+<p><strong>Pomada.</strong> 2d6 de cura fora de combate (1× por descanso). Tratamento entre lutas.</p>
+<p><strong>Colheita.</strong> Em 1h de busca (CD 14) acha ingredientes. Combustível para Cozinha/Remédio/Preparados.</p>
+<p><strong>Preparados.</strong> 1 dose: sono, vigor (+1 teste) ou veneno fraco 1d4. Farmácia de campo com três perfis.</p>
+<h3>💰 Comércio (Almas)</h3>
+<div class="skill-tree-print">
+<div class="stp-node stp-root"><div class="stp-name">Comércio</div><div class="stp-meta">Passivo</div><div class="stp-detail">+2 barganha, avaliar mercadoria e achar comprador. Conhece o preço justo da região.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Barganha</div><div class="stp-meta">1 ação · REQ Comércio · CAR 3</div><div class="stp-detail">Melhora preço em ~20% (CD CAR 12).</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Fechamento</div><div class="stp-meta">2 ações · REQ Barganha · CAR 5</div><div class="stp-detail">1×/cena: negócio improvável (CD 16) ou revela preço mínimo.</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Avaliação</div><div class="stp-meta">1 ação · REQ Comércio · INT 3</div><div class="stp-detail">Valor, falsificação ou origem de 1 item.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Olho de Mercador</div><div class="stp-meta">1 ação · REQ Avaliação · INT 5 SAB 3</div><div class="stp-detail">Detecta golpe/contrabando no mercado (CD 14).</div></div></div></div></div><div class="stp-branch"><div class="stp-node"><div class="stp-name">Contatos Comerciais</div><div class="stp-meta">Passivo · REQ Comércio · CAR 4</div><div class="stp-detail">1 fornecedor/comprador útil por cidade.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Caravana</div><div class="stp-meta">2 ações · REQ Contatos Comerciais · CAR 5</div><div class="stp-detail">Viaja com mercadores: +2 segurança na estrada.</div></div><div class="stp-children"><div class="stp-branch"><div class="stp-node"><div class="stp-name">Patrono</div><div class="stp-meta">Passivo · REQ Caravana · CAR 7</div><div class="stp-detail">1×/arco: mercador rico financia empreitada (com dívida).</div></div></div></div></div></div></div></div>
+</div>
+
+<p><strong>Comércio.</strong> +2 em barganha, avaliar mercadoria e achar comprador; você conhece o preço justo da região. Linguagem do mercado.</p>
+<p><strong>Barganha.</strong> Melhora preço em ~20% (CD CAR 12). Desconto mecânico, não só roleplay.</p>
+<p><strong>Fechamento.</strong> 1× por cena: fecha negócio improvável (CD 16) ou revela preço mínimo. O “sim” difícil.</p>
+<p><strong>Avaliação.</strong> Descobre valor, falsificação ou origem de 1 item. Olho clínico de mercador.</p>
+<p><strong>Olho de Mercador.</strong> Detecta golpe/contrabando no mercado (CD 14). Antifraude de feira.</p>
+<p><strong>Contatos Comerciais.</strong> 1 fornecedor/comprador útil por cidade. Cadeia logística da party.</p>
+<p><strong>Caravana.</strong> Viaja com mercadores: +2 segurança na estrada. Número em encontros de estrada.</p>
+<p><strong>Patrono.</strong> 1× por arco: mercador rico financia empreitada (com dívida). Dinheiro agora, consequência depois.</p>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 4</span>HABILIDADES GERAIS E BUILDS HÍBRIDAS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<h2>Habilidades Gerais</h2>
+<p>Escolha <strong>1</strong> no nível 1 — não pertencem a nenhum domínio. Gerais <strong>não</strong> gastam PD. PD (todo nível) só compra nós/Raízes de domínio. No nv7 e nv14 o mestre pode premiar +1 Geral opcional.</p>
+<table>
+<thead>
+<tr>
+<th>Habilidade</th>
+<th>Tipo</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sobrevivente</td>
+<td>Passivo</td>
+<td>+2 PV máximos; em descanso curto recupera +2 PV extras.</td>
+</tr>
+<tr>
+<td>Língua Afiada</td>
+<td>1 ação</td>
+<td>+2 em um teste de CAR nesta cena (persuasão, engano ou intimidação).</td>
+</tr>
+<tr>
+<td>Olho Clínico</td>
+<td>Passivo</td>
+<td>+2 em testes de percepção e investigação mundanos (sem gastar ação).</td>
+</tr>
+<tr>
+<td>Passo Seguro</td>
+<td>Passivo</td>
+<td>Ignora 1 grid de terreno difícil por turno; +2 vs ser empurrado.</td>
+</tr>
+<tr>
+<td>Mãos de Ofício</td>
+<td>Passivo</td>
+<td>+2 em um ofício escolhido (ferreiro, alquimia, ladinagem, etc.).</td>
+</tr>
+<tr>
+<td>Segundo Fôlego</td>
+<td>1 ação</td>
+<td>1×/combate: recupera PV = nível + CON.</td>
+</tr>
+<tr>
+<td>Iniciativa Aguçada</td>
+<td>Passivo</td>
+<td>+3 em iniciativa.</td>
+</tr>
+<tr>
+<td>Escudo Improvisado</td>
+<td>Quando atacado</td>
+<td>+2 CA contra 1 ataque (mesmo sem escudo).</td>
+</tr>
+<tr>
+<td>Pele Dura</td>
+<td>Passivo</td>
+<td>+1 CA enquanto não usar armadura pesada.</td>
+</tr>
+<tr>
+<td>Memória de Ferro</td>
+<td>Passivo</td>
+<td>+2 em testes de INT de conhecimento, recall e estudo.</td>
+</tr>
+<tr>
+<td>Sangue Frio</td>
+<td>Passivo</td>
+<td>+2 vs medo/intimidação; 1×/cena anula Hesitante em si.</td>
+</tr>
+<tr>
+<td>Passo Fantasma</td>
+<td>Passivo</td>
+<td>+2 furtividade; 1×/combate: move 1 grid sem provocar AO.</td>
+</tr>
+<tr>
+<td>Voz de Comando</td>
+<td>1 ação</td>
+<td>1×/cena: aliado a 6 grid ganha +1 acerto no próximo ataque.</td>
+</tr>
+<tr>
+<td>Mãos Firmes</td>
+<td>Passivo</td>
+<td>+2 contra desarme/soltar item; +1 dano com arma leve.</td>
+</tr>
+<tr>
+<td>Olhar do Caçador</td>
+<td>1 ação</td>
+<td>+2 rastreio; 1×/cena marca 1 alvo (+1 acerto 1 rodada).</td>
+</tr>
+<tr>
+<td>Respiro Curto</td>
+<td>Passivo</td>
+<td>1×/descanso curto: remove Exausto nível 1 ou 1 condição menor.</td>
+</tr>
+</tbody>
+</table>
+<h2>Builds Híbridas</h2>
+<p>Misture domínios nos três pilares — não só no combate.</p>
+<h3>🗣️ Diplomata de Campo</h3>
+<p><em>Política + Espírito — Leitura + Elo + Rede</em></p>
+<p>Nv1: Leitura → Nv3: Elo → Nv5: Pressão Política → Nv7: Negociação → Nv9: Rede</p>
+<p>Resolve arcos sem empunhar arma. Lê salas, barganha o preço real e cura quando a conversa vira sangue. SAB/CAR altos.</p>
+<h3>🏕️ Peregrino</h3>
+<p><em>Viagem + Sustento — Caminho + Sustento + Guia</em></p>
+<p>Nv1: Caminho → Nv3: Sustento → Nv5: Vigília → Nv7: Guia → Nv9: Escudo Civil</p>
+<p>Mantém o grupo vivo na estrada: rota, vigília, primeiros socorros e proteção de civis. Combate é secundário; sobrevivência é o foco.</p>
+<h3>🧵 Artífice da Praça</h3>
+<p><em>Ofício + Voz — Artesanato + Comércio + Rede</em></p>
+<p>Nv1: Artesanato → Nv3: Comércio → Nv5: Contatos → Nv7: Rede → Nv9: Patrono</p>
+<p>Faz, vende e conhece gente. Resolve arcos sem puxar arma: encomendas, favores e dinheiro abrem portas que a lâmina não abre.</p>
+<h3>🎨 Trovador de Estrada</h3>
+<p><em>Ofício + Trilha — Artes + Caminho + Herbário</em></p>
+<p>Nv1: Artes → Nv3: Caminho → Nv5: Música → Nv7: Herbário → Nv9: Balada</p>
+<p>Performance, viagem e remédio de acampamento. O grupo chega vivo e bem-visto — combate é o plano B.</p>
+<h3>📚 Erudito de Guerra</h3>
+<p><em>Magia + Plano — Erudição + Investigação + Evocação</em></p>
+<p>Nv1: Erudição → Nv3: Investigação → Nv5: Ritual Menor → Nv7: Plano → Nv9: Explosão</p>
+<p>Identifica, prepara e só então explode. Forte em dungeons e mistérios; no combate chega pronto, não improvisado.</p>
+<h3>⚔️ Battle Mage</h3>
+<p><em>Corpo + Arcana — Duelista + Evocação</em></p>
+<p>Nv1: Duelista → Nv3: Evocação → Nv5: Precisão Fatal → Nv7: Explosão → Nv9: Força Bruta</p>
+<p>Lâmina + elemento. Não é o melhor duelista nem o melhor mago — é quem abre portas com o ombro e com fogo.</p>
+<h3>💨 Sombra da Rua</h3>
+<p><em>Trilha + Corpo — Sombra + Multidão + Duelista</em></p>
+<p>Nv1: Sombra → Nv3: Multidão → Nv5: Ataque Furtivo → Nv7: Duelista → Nv9: Sem Rastros</p>
+<p>Infiltra, some na multidão e corta o que precisa. DES compartilhado; funciona em heist e em emboscada.</p>
+<h3>🛡️ Paladino</h3>
+<p><em>Guarda + Voz — Muralha + Elo + Presença de Guerra</em></p>
+<p>Nv1: Muralha → Nv3: Elo → Nv5: Bloqueio → Nv7: Presença de Guerra → Nv9: Cura Espiritual</p>
+<p>Protege, cura e intimida. CON e CAR. No combate é muralha; fora dele é santuário e palavra pesada.</p>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 5</span>EQUIPAMENTO E ARMAS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<h2>Armas</h2>
+<table>
+<thead>
+<tr>
+<th>Arma</th>
+<th>Dano</th>
+<th>Tipo</th>
+<th>Propriedades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adaga</td>
+<td>1d6</td>
+<td>Leve</td>
+<td>Finesse (usa DES), arremesso 4 grid</td>
+</tr>
+<tr>
+<td>Espada Curta</td>
+<td>1d6</td>
+<td>Leve</td>
+<td>Finesse (usa DES)</td>
+</tr>
+<tr>
+<td>Espada Longa</td>
+<td>1d8</td>
+<td>Média</td>
+<td>Versátil</td>
+</tr>
+<tr>
+<td>Machado de Batalha</td>
+<td>1d8</td>
+<td>Média</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Montante</td>
+<td>1d10</td>
+<td>Pesada</td>
+<td>Duas mãos</td>
+</tr>
+<tr>
+<td>Martelo de Guerra</td>
+<td>1d10</td>
+<td>Pesada</td>
+<td>Duas mãos</td>
+</tr>
+<tr>
+<td>Arco Curto</td>
+<td>1d6</td>
+<td>Ranged</td>
+<td>6 grid</td>
+</tr>
+<tr>
+<td>Besta Leve</td>
+<td>1d8</td>
+<td>Ranged</td>
+<td>12 grid, recarga</td>
+</tr>
+<tr>
+<td>Arco Longo</td>
+<td>1d8</td>
+<td>Ranged</td>
+<td>12 grid, duas mãos</td>
+</tr>
+<tr>
+<td>Escudo</td>
+<td>—</td>
+<td>—</td>
+<td>+2 de CA</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Escalamento: armas leves e ranged ganham +1d6 de dano a cada 5 níveis; pesadas a cada 4 níveis. Magias escalam a cada 3 níveis.
+
+</div>
+
+<h2>Armaduras</h2>
+<table>
+<thead>
+<tr>
+<th>Armadura</th>
+<th>Bônus CA</th>
+<th>Penalidade</th>
+<th>Requisito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leve (couro)</td>
+<td>+1 a +2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Média (cota de malha)</td>
+<td>+3 a +4</td>
+<td>-1 DES</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Pesada (placas)</td>
+<td>+5 a +6</td>
+<td>-2 DES</td>
+<td>FOR 4+</td>
+</tr>
+</tbody>
+</table>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 6</span>PROGRESSÃO DE NÍVEL</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Todo nível: <strong>+1 atributo</strong> e <strong>+1 ponto de disciplina (PD)</strong>.</p>
+<p><strong>Ponto de Disciplina (PD):</strong> gaste 1 PD para desbloquear <strong>1 nó</strong> de qualquer ramo cuja Raiz você já tenha — ou para comprar uma <strong>Nova Raiz</strong> (novo ramo/caminho). Nós com fork (ex.: Chama / Raio / Gelo) são escolhas: pegar um não bloqueia os outros, mas cada um custa 1 PD.</p>
+<p><strong>Ações:</strong> recurso do seu turno (ataques, habilidades de turno). Respostas fora do turno não gastam ações. Começa em <strong>1</strong> no nível 1 e sobe rápido no início; depois os ganhos espaçam (+1/nível até o 7; depois +1 nos níveis 9, 12 e 16 — teto 10).</p>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Atributo</th>
+<th>Disciplina (PD)</th>
+<th>Ações</th>
+<th>Extras</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10 pontos iniciais</td>
+<td>1 Raiz (grátis) + 1 Geral (grátis)</td>
+<td>1</td>
+<td>combo 3 slots</td>
+</tr>
+<tr>
+<td>2</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>3</td>
+<td>Finalizador T1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>4</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>5</td>
+<td>Finalizador T2; combo 4 slots</td>
+</tr>
+<tr>
+<td>6</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>6</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>7</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>7</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>8</td>
+<td>Finalizador T3; combo 5 slots</td>
+</tr>
+<tr>
+<td>10</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>8</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>9</td>
+<td>—</td>
+</tr>
+<tr>
+<td>13</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>9</td>
+<td>Combo 6 slots</td>
+</tr>
+<tr>
+<td>14</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>9</td>
+<td>—</td>
+</tr>
+<tr>
+<td>15</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>9</td>
+<td>—</td>
+</tr>
+<tr>
+<td>16</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>17</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>18</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>19</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>20</td>
+<td>+1</td>
+<td>+1 PD</td>
+<td>10</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Total: 19 PD (nv2–20) + Raiz e Geral no nv1. Atributo máximo +10. PV: 8+CON, depois +5+CON/nível. Morte: 0 PV → 1 rodada para cura ou morre.
+
+</div>
+
+<h1 class="part-title">PARTE 2</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 7</span>PERÍCIAS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Lookup rápido: o que o mestre pediu → domínio e atributo.</p>
+<p><strong>Fórmula:</strong> <code>d20 + atributo + proficiência</code> (se tiver a <strong>Raiz</strong> do domínio) + <strong>afinidade +2</strong> fora de combate. O mestre escolhe o atributo pela situação; a tabela sugere o típico.</p>
+<table>
+<thead>
+<tr>
+<th>Quando pedirem…</th>
+<th>Domínio</th>
+<th>Atributo</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atletismo, carga, empurrar, forçar porta</td>
+<td>Corpo</td>
+<td>FOR</td>
+<td>Ofício do Ferro: forja/demolição</td>
+</tr>
+<tr>
+<td>Briga, duelo ritualizado, presença física</td>
+<td>Corpo</td>
+<td>FOR / DES</td>
+<td>Duelista / Presença</td>
+</tr>
+<tr>
+<td>Acrobacia, equilíbrio, salto preciso</td>
+<td>Trilha</td>
+<td>DES</td>
+<td>Ramo Acrobata</td>
+</tr>
+<tr>
+<td>Furtividade, esconder-se, mover sem ruído</td>
+<td>Trilha</td>
+<td>DES</td>
+<td>Ramo Sombra</td>
+</tr>
+<tr>
+<td>Disfarce discreto, sumir na multidão</td>
+<td>Trilha</td>
+<td>DES / CAR</td>
+<td>Sombra / Multidão</td>
+</tr>
+<tr>
+<td>Viagem, orientação, marcha</td>
+<td>Trilha</td>
+<td>SAB / CON</td>
+<td>Ramo Caminho</td>
+</tr>
+<tr>
+<td>Tiro, mira, precisão à distância</td>
+<td>Precisão</td>
+<td>DES</td>
+<td>Ramo Atirador</td>
+</tr>
+<tr>
+<td>Rastrear, ler rastros, caça</td>
+<td>Precisão</td>
+<td>SAB</td>
+<td>Ramo Rastreador</td>
+</tr>
+<tr>
+<td>Sobrevivência no selvagem, acampar</td>
+<td>Precisão</td>
+<td>SAB</td>
+<td>Rastreador</td>
+</tr>
+<tr>
+<td>Truques de mão, fechaduras, dispositivos</td>
+<td>Precisão</td>
+<td>DES</td>
+<td>Ramo Truqueiro</td>
+</tr>
+<tr>
+<td>Sinais, comunicação à distância</td>
+<td>Precisão</td>
+<td>INT / DES</td>
+<td>Ramo Sinaleiro</td>
+</tr>
+<tr>
+<td>Identificar magia, ritual, conhecimento arcano</td>
+<td>Arcana</td>
+<td>INT</td>
+<td>Erudição / Evocação</td>
+</tr>
+<tr>
+<td>Invocar, controlar efeito mágico</td>
+<td>Arcana</td>
+<td>INT</td>
+<td>Invocação</td>
+</tr>
+<tr>
+<td>Ilusão, véu, ocultar magia</td>
+<td>Arcana</td>
+<td>INT</td>
+<td>Véu</td>
+</tr>
+<tr>
+<td>Bloquear, resistir impacto, vigília</td>
+<td>Guarda</td>
+<td>CON</td>
+<td>Muralha / Vigília</td>
+</tr>
+<tr>
+<td>Proteger aliado, cobrir posição</td>
+<td>Guarda</td>
+<td>CON / FOR</td>
+<td>Guardião</td>
+</tr>
+<tr>
+<td>Sustento, resistência a clima/veneno</td>
+<td>Guarda</td>
+<td>CON</td>
+<td>Sustento</td>
+</tr>
+<tr>
+<td>Santuário, abrigo, zona segura</td>
+<td>Guarda</td>
+<td>CON / SAB</td>
+<td>Santuário</td>
+</tr>
+<tr>
+<td>Percepção, notar detalhe, ler cena</td>
+<td>Insight</td>
+<td>SAB</td>
+<td>Leitura</td>
+</tr>
+<tr>
+<td>Investigar, analisar pista, deduzir</td>
+<td>Insight</td>
+<td>INT</td>
+<td>Investigação</td>
+</tr>
+<tr>
+<td>Armadilhas: achar, armar, desarmar</td>
+<td>Insight</td>
+<td>INT / DES</td>
+<td>Armadilheiro</td>
+</tr>
+<tr>
+<td>Plano de batalha, coordenar tática</td>
+<td>Insight</td>
+<td>INT</td>
+<td>Estrategista</td>
+</tr>
+<tr>
+<td>Leverage social, ler intenção</td>
+<td>Insight</td>
+<td>SAB / CAR</td>
+<td>Leitura</td>
+</tr>
+<tr>
+<td>Intimidar (medo, grito de guerra)</td>
+<td>Voz</td>
+<td>CAR</td>
+<td>Presença de Guerra; físico → Corpo/FOR</td>
+</tr>
+<tr>
+<td>Persuadir, negociar, oratória</td>
+<td>Voz</td>
+<td>CAR</td>
+<td>Orador</td>
+</tr>
+<tr>
+<td>Performance, plateia, palco</td>
+<td>Voz ou Ofício</td>
+<td>CAR</td>
+<td>Palco / Artes</td>
+</tr>
+<tr>
+<td>Cura espiritual, elo, conforto</td>
+<td>Voz</td>
+<td>CAR / SAB</td>
+<td>Elo</td>
+</tr>
+<tr>
+<td>Arte, escrita, composição</td>
+<td>Ofício</td>
+<td>CAR / INT</td>
+<td>Artes</td>
+</tr>
+<tr>
+<td>Artesanato fino, costura, precisão manual</td>
+<td>Ofício</td>
+<td>DES / INT</td>
+<td>Artesanato</td>
+</tr>
+<tr>
+<td>Herbário, remédio, cozinha</td>
+<td>Ofício</td>
+<td>SAB</td>
+<td>Herbário</td>
+</tr>
+<tr>
+<td>Comércio, barganha, avaliar preço</td>
+<td>Ofício</td>
+<td>CAR / INT</td>
+<td>Comércio</td>
+</tr>
+<tr>
+<td>Forja pesada, demolição, trabalho bruto</td>
+<td>Corpo</td>
+<td>FOR</td>
+<td>Ofício do Ferro (não Ofício civil)</td>
+</tr>
+</tbody>
+</table>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 8</span>NÚCLEO DE REGRAS</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>O miolo que a mesa precisa para jogar sem improvisar.</p>
+<h2>Resolução de Testes</h2>
+<p><strong>Teste:</strong> d20 + atributo + proficiência (se o domínio cobrir a ação) + afinidade (+2 se tiver a Raiz, só fora de combate) vs <strong>CD</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>CD</th>
+<th>Dificuldade</th>
+<th>Quando usar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Fácil</td>
+<td>Rotina sob pressão leve</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Média</td>
+<td>Padrão de cena / combate tático</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Difícil</td>
+<td>Alto risco, oposição preparada</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Extrema</td>
+<td>Quase impossível sem preparação</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vantagem:</strong> role 2d20, use o maior. <strong>Desvantagem:</strong> role 2d20, use o menor. Não empilham: 1 vantagem + 1 desvantagem = normal. Vantagens múltiplas = ainda 1 vantagem.</p>
+<p><strong>Concentração:</strong> efeitos que exigem Concentração caem se você: (a) ficar Atordoado/Paralisado/inconsciente, (b) falhar TDD CON CD 10 + metade do dano recebido (mín. 10) ao tomar dano, ou (c) ativar outro efeito de Concentração.</p>
+<h2>Ações</h2>
+<p><strong>Ação</strong> é o recurso do <strong>seu turno</strong>: ataques básicos, habilidades de turno, desengajar, ajudar, usar item. No combate regenera no <strong>início do turno</strong>; fora dele, no início de cada <strong>cena</strong>. O pool sobe com o nível (começa em 1 — ver Progressão). Habilidades com <strong>gatilho fora do turno</strong> (quando atacado, AO, etc.) <strong>não</strong> gastam ações — usam 1 <strong>resposta</strong> por rodada (e PM se o nó pedir).</p>
+<h2>Descanso e PV</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Duração</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descanso curto</td>
+<td>~30 min, 1× entre combates longos</td>
+<td>Recupera PV = nível + CON. Recupera metade do PM (arred. cima). Remove 1 condição não-Exausto.</td>
+</tr>
+<tr>
+<td>Descanso longo</td>
+<td>~8 h, seguro</td>
+<td>PV e PM no máximo. Remove 1 nível de Exausto. Reseta usos “1×/dia”.</td>
+</tr>
+<tr>
+<td>PV no nível 1</td>
+<td>—</td>
+<td>8 + CON</td>
+</tr>
+<tr>
+<td>PV por nível (2+)</td>
+<td>—</td>
+<td>+5 + CON por nível (mín. +1)</td>
+</tr>
+</tbody>
+</table>
+<h2>Proficiência</h2>
+<table>
+<thead>
+<tr>
+<th>Níveis</th>
+<th>Bônus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>3–4</td>
+<td>+2</td>
+</tr>
+<tr>
+<td>5–6</td>
+<td>+3</td>
+</tr>
+<tr>
+<td>7–8</td>
+<td>+4</td>
+</tr>
+<tr>
+<td>9–10</td>
+<td>+5</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td>+6</td>
+</tr>
+<tr>
+<td>13–14</td>
+<td>+7</td>
+</tr>
+<tr>
+<td>15–16</td>
+<td>+8</td>
+</tr>
+<tr>
+<td>17–18</td>
+<td>+9</td>
+</tr>
+<tr>
+<td>19–20</td>
+<td>+10</td>
+</tr>
+</tbody>
+</table>
+<p>Fórmula: <code>1 + ⌊(nível − 1) / 2⌋</code>. Aplica-se a ataques com arma/magia treinada e a testes cobertos por um domínio em que você tenha ao menos a Raiz.</p>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 9</span>COMBATE</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+<figure class="figure"><img src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ilustracao-combate.jpg" alt="Posição, ações e combo decidem o combate."/><figcaption>Posição, ações e combo decidem o combate.</figcaption></figure>
+
+<h2>Turno de Combate</h2>
+<table>
+<thead>
+<tr>
+<th>Passo</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iniciativa</td>
+<td>d20 + DES. Empate: maior DES; se persistir, re-role.</td>
+</tr>
+<tr>
+<td>Início do turno</td>
+<td>Recupera o pool de ações do nível. Aplica danos/efeitos “início do turno”.</td>
+</tr>
+<tr>
+<td>Movimento</td>
+<td>3 + ⌊DES/2⌋ grid por turno (pode dividir antes/depois dos gastos). Terreno difícil: 2 por quadrado.</td>
+</tr>
+<tr>
+<td>Gastos</td>
+<td>Gaste ações em ataques, habilidades de turno, desengajar, ajudar, usar item. Pode encadear vários gastos enquanto tiver ações.</td>
+</tr>
+<tr>
+<td>Resposta</td>
+<td>1 resposta por rodada (fora do seu turno): AO, bloqueio, esquiva, etc. Não gasta ações — só o gatilho (e PM se o nó pedir).</td>
+</tr>
+<tr>
+<td>Fim do turno</td>
+<td>Ações não gastas podem ser reservadas (ver abaixo) ou se perdem. Efeitos “até fim do turno” acabam.</td>
+</tr>
+</tbody>
+</table>
+<h2>Ataque Básico</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custo</td>
+<td>1 ação por ataque básico com arma</td>
+</tr>
+<tr>
+<td>Acerto corpo a corpo</td>
+<td>d20 + FOR (ou DES se Finesse) + proficiência vs CA do alvo</td>
+</tr>
+<tr>
+<td>Acerto à distância</td>
+<td>d20 + DES + proficiência vs CA</td>
+</tr>
+<tr>
+<td>Acerto mágico</td>
+<td>d20 + INT (ou atributo da skill) + proficiência vs CA, salvo TDD indicado</td>
+</tr>
+<tr>
+<td>Dano</td>
+<td>Dado da arma/magia + atributo usado no acerto (FOR/DES/INT conforme o caso)</td>
+</tr>
+<tr>
+<td>Crítico</td>
+<td>Natural 20 (ou 19–20 com Precisão Fatal): dobre os dados de dano, não o modificador</td>
+</tr>
+<tr>
+<td>Erro automático</td>
+<td>Natural 1: erra; não enche slot de combo</td>
+</tr>
+</tbody>
+</table>
+<p>Desengajar (sair sem provocar AO): <strong>1 ação</strong>. Ajudar aliado (+vantagem no próximo teste dele): <strong>1 ação</strong>.</p>
+<h2>Ação Reservada</h2>
+<p>No <strong>fim do seu turno</strong>, declare quantas ações não gastas ficam <strong>reservadas</strong> até o início do seu próximo turno (máx. = suas ações de nível). Ação reservada <strong>não</strong> vira gasto de turno nem resposta — só alimenta efeitos como <strong>Muralha</strong> (bônus de CA = ação reservada × 1,5, arredondado para baixo). Ao iniciar o próximo turno, a ação reservada some e você recupera o pool cheio normalmente.</p>
+<h2>Queda e Morte</h2>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>O que acontece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 PV</td>
+<td>O personagem cai inconsciente imediatamente: sem ações, movimento, respostas ou Concentração. Ataques corpo a corpo contra ele têm vantagem.</td>
+</tr>
+<tr>
+<td>Marca de morte</td>
+<td>No instante da queda, marca-se o fim da próxima rodada completa (após todos na iniciativa agirem uma vez a partir desse ponto).</td>
+</tr>
+<tr>
+<td>Cura a tempo</td>
+<td>Se receber cura ou efeito que o leve a pelo menos 1 PV antes desse prazo, ele acorda (pode agir normalmente no próximo turno dele).</td>
+</tr>
+<tr>
+<td>Morte</td>
+<td>Se ao fim dessa 1 rodada ainda estiver a 0 PV, morre. Sem testes de morte. Sem estabilizar por CD — só cura (ou habilidade que restaure PV / traga de volta).</td>
+</tr>
+<tr>
+<td>Dano a 0 PV</td>
+<td>Se um inconsciente a 0 PV sofrer novo dano, o prazo de 1 rodada reinicia a partir desse golpe (ainda precisa de cura a 1+ PV).</td>
+</tr>
+<tr>
+<td>Golpe de misericórdia</td>
+<td>Um inimigo adjacente pode gastar 1 ação para executar o caído: morte instantânea (sem esperar a rodada).</td>
+</tr>
+</tbody>
+</table>
+<div class="exemplo">
+
+Exemplo: Kael cai a 0 PV no turno do orc. Todos os combatentes ainda vão agir nessa rodada e na seguinte. Se ninguém curar Kael até o fim da rodada seguinte, Kael morre.
+
+</div>
+
+<h2>Ataques de Oportunidade</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quando</strong></td>
+<td>Quando um inimigo <strong>sai do seu alcance corpo a corpo</strong> sem usar a ação de desengajamento.</td>
+</tr>
+<tr>
+<td><strong>Custo</strong></td>
+<td><strong>Sem custo de ação</strong> — usa sua <strong>1 resposta</strong> da rodada. Limite de 1 AO por rodada.</td>
+</tr>
+<tr>
+<td><strong>Efeito</strong></td>
+<td>Um ataque corpo a corpo imediato com <strong>−2 de penalidade</strong> no acerto.</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+**Trilha muda o jogo:** Escapismo e Sombra permitem sair sem provocar AO. Contra um especialista em Trilha, ataques de oportunidade raramente conectam — e é por isso que Precisão ganha valor real no grid.
+
+</div>
+
+<h2>Grid e Posicionamento</h2>
+<h3>Alcances</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Alcance</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Corpo a corpo</td>
+<td>1 grid</td>
+<td>Somente quadrados adjacentes</td>
+</tr>
+<tr>
+<td>Arma de haste (lança)</td>
+<td>2 grid</td>
+<td>Não ataca adjacentes sem penalidade</td>
+</tr>
+<tr>
+<td>Ranged curto</td>
+<td>6 grid</td>
+<td>Arco curto, adagas arremessadas</td>
+</tr>
+<tr>
+<td>Ranged longo</td>
+<td>12 grid</td>
+<td>Arco longo, bestas</td>
+</tr>
+<tr>
+<td>Magia</td>
+<td>10-12 grid</td>
+<td>Varia conforme a habilidade</td>
+</tr>
+</tbody>
+</table>
+<h3>Terreno e Cobertura</h3>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terreno difícil</td>
+<td>Movimento custa o dobro (cada quadrado de 1 grid custa 2 grid de movimento)</td>
+</tr>
+<tr>
+<td>Cobertura parcial</td>
+<td>+2 de CA contra ataques à distância</td>
+</tr>
+<tr>
+<td>Cobertura total</td>
+<td>Não pode ser alvo de ataques</td>
+</tr>
+<tr>
+<td>Terreno elevado</td>
+<td>+1 em ataques à distância</td>
+</tr>
+</tbody>
+</table>
+<h2>Barra de Combo</h2>
+<p>Cada <strong>acerto</strong> (ataque ou magia ofensiva) enche <strong>1 slot</strong>. Errar <strong>não</strong> esvazia a barra. Com slots suficientes para um tier, você pode usar um <strong>Finalizador</strong>: execute um ataque ou habilidade ofensiva, pague o <strong>mesmo custo de ações</strong> dessa habilidade (ataque básico = 1 ação; magia = custo listado), escolha <strong>1 opção</strong> do tier, aplique o efeito em cima do ataque/magia, e <strong>zere</strong> a barra. Sem ações suficientes, não pode gastar. A barra persiste entre rodadas e reseta ao fim do combate.</p>
+<h3>Tiers de Finalizador — escolha 1 ao usar</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Slots</th>
+<th>Nível</th>
+<th>Opções (escolha 1 na hora)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tier 1</td>
+<td>3</td>
+<td>1–4</td>
+<td>Golpe Pesado +2d6 dano ·  Quebrar Guarda alvo −2 CA até fim do próximo turno dele ·  Impulso empurrão 1 grid (sem TDD)</td>
+</tr>
+<tr>
+<td>Tier 2</td>
+<td>5</td>
+<td>5–8</td>
+<td>Rajada +3d6 ·  Atordoar Atordoado (CON CD 12 + metade do nível) ·  Abrir Brecha próximo aliado que atacar o alvo nesta rodada tem +3 acerto ·  Empurrão Forte 2 grids</td>
+</tr>
+<tr>
+<td>Tier 3</td>
+<td>6+</td>
+<td>9+</td>
+<td>Devastação +5d6 e ignora resistência (não imunidade) ·  Campo +3d6 em área 2 grid (secundários metade, DES pela metade) ·  Colapso +3d6 e alvo Caído ou Exausto 1 (CON CD 14 + metade do nível) ·  Marca Fatal +2d6 e +1d6 em todos os seus acertos contra esse alvo até fim do combate</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Capacidade da barra: nv1–4 = 3 slots; nv5–8 = 4; nv9–12 = 5; nv13+ = 6. Você gasta o maior tier cujo requisito de slots preencheu. Role acerto normalmente (salvo efeito que diga o contrário); crítico ainda em 20.
+
+</div>
+
+<h3>Ataque Conjunto</h3>
+<p>Todos os participantes devem estar <strong>adjacentes ao alvo</strong> e gastar <strong>2 ações</strong> cada. Um <strong>líder</strong> rola o acerto; o dano é o da arma/habilidade do líder + o bônus da tabela. Os outros não rolam ataque — só pagam o custo e habilitam o bônus.</p>
+<table>
+<thead>
+<tr>
+<th>Participantes</th>
+<th>Custo</th>
+<th>Bônus de Acerto</th>
+<th>Dano Extra</th>
+<th>Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>2 ações cada</td>
+<td>+3</td>
+<td>+2d6</td>
+<td>1 participante pode empurrar o alvo 1 grid</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2 ações cada</td>
+<td>+5</td>
+<td>+3d6</td>
+<td>Alvo −2 CA até fim do próximo turno dele</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2 ações cada</td>
+<td>+7</td>
+<td>+4d6</td>
+<td>Participantes sem respostas neste turno; se acertar, alvo Atordoado (CON CD 12 + metade do maior nível do grupo)</td>
+</tr>
+</tbody>
+</table>
+<h1 class="chapter-title"><span class="chap-label">CAPÍTULO 10</span>MAGIA E PONTOS DE MAGIA</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Neste sistema não há lista separada de “magias de nível”. A magia é um conjunto de <strong>nós</strong> no domínio <strong>Arcana</strong> (e, em menor grau, efeitos espirituais em <strong>Voz — Elo</strong> e utilidades em <strong>Guarda / Ofício</strong>).</p>
+<h2>Pontos de Magia (PM)</h2>
+<ul>
+<li><strong>Pool:</strong> INT × 3.</li>
+<li><strong>Não cresce com nível</strong> — só com o atributo INT.</li>
+<li>Habilidades mágicas listam custo em <strong>ações</strong> e, quando aplicável, em <strong>PM</strong> no texto do nó (Capítulo 3 · Arcana).</li>
+<li><strong>Descanso curto:</strong> recupera metade do PM (arredondado para cima).</li>
+<li><strong>Descanso longo:</strong> PM no máximo.</li>
+</ul>
+<h2>Conjurar</h2>
+<ol>
+<li>Declara a habilidade do nó que você possui.</li>
+<li>Paga o custo de ações (e PM, se houver).</li>
+<li>Resolve acerto (<code>d20 + INT</code> ou atributo indicado + proficiência vs CA) <strong>ou</strong> força um TDD no alvo, conforme o nó.</li>
+<li>Aplica dano/efeito; críticos e combo seguem as regras do Capítulo 9.</li>
+</ol>
+<h2>Concentração</h2>
+<p>Alguns efeitos pedem Concentração. Veja Capítulo 8. Ativar outro efeito de Concentração derruba o anterior.</p>
+<h2>Onde achar as magias</h2>
+<p>Consulte o domínio <strong>Arcana</strong> no Capítulo 3: Evocação (e forks Chama / Raio / Gelo), Invocação, Erudição e Véu. Cada nó traz efeito curto na tabela e descrição expandida abaixo dela.</p>
+<h1 class="chapter-title"><span class="chap-label">APÊNDICE A</span>CONDIÇÕES</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Efeitos de status com mecânicas definidas.</p>
+<h3>Atordoado</h3>
+<p>Perde o próximo turno completamente. CA -2. Não pode usar respostas.</p>
+<h3>Hesitante</h3>
+<p>−2 no próximo ataque ou teste hostil. Consome-se após esse ato (ou no fim do próximo turno do alvo, o que vier primeiro). Não empilha.</p>
+<h3>Amedrontado</h3>
+<p>−2 em ataques enquanto a fonte estiver visível. Não pode se aproximar voluntariamente da fonte. (Texto antigo “Medo” = esta condição.)</p>
+<h3>Enfeitiçado</h3>
+<p>Não pode atacar o encantador. O encantador tem +2 em ataques e testes sociais contra o alvo.</p>
+<h3>Envenenado</h3>
+<p>-1d6 em rolagens de ataque. Perde 1 PV no início de cada turno. TDD CON a cada rodada encerra o efeito.</p>
+<h3>Paralisado</h3>
+<p>Não pode agir nem se mover. Ataques corpo a corpo contra o alvo acertam automaticamente e são críticos.</p>
+<h3>Cegado</h3>
+<p>-4 em ataques. Não pode realizar ataques à distância. Falha automaticamente em testes de percepção visual.</p>
+<h3>Exausto</h3>
+<p>-1 em todos os testes por nível de exaustão (máx. 5). No nível 5, cai inconsciente. Cada descanso longo remove 1 nível.</p>
+<h2>Regras Gerais</h2>
+<p>TDD = Teste de Dificuldade: d20 + atributo vs. CD 10 + modificador do atributo de origem do efeito.<br>
+ A mesma condição não acumula — aplica-se apenas a mais severa. Salvo indicação em contrário,<br>
+ condições duram até o fim do próximo turno de quem as causou. Habilidades de<br>
+ Exorcismo / Restauração (Voz — Elo) e Bloqueio (Guarda — Muralha) removem ou previnem condições.</p>
+<h1 class="chapter-title"><span class="chap-label">APÊNDICE B</span>BESTIÁRIO (NÍVEL BAIXO)</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>Inimigos para playtest · fichas compactas · XP ao morrer.</p>
+<h2>XP e nível</h2>
+<p>Some o XP dos inimigos derrotados. A mesa pode usar a tabela abaixo <em>ou</em> avançar 1 nível por arco — escolha uma regra e mantenha.</p>
+<table>
+<thead>
+<tr>
+<th>Nível alvo</th>
+<th>XP acumulado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>300</td>
+</tr>
+<tr>
+<td>3</td>
+<td>900</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2 700</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6 500</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Inimigos morrem a 0 PV (sem a regra de 1 rodada dos jogadores).
+
+</div>
+
+<h2>Fichas</h2>
+<table>
+<thead>
+<tr>
+<th>Monstro</th>
+<th>Nv</th>
+<th>PV</th>
+<th>CA</th>
+<th>Ações</th>
+<th>Ataque / habilidades</th>
+<th>XP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rato de esgoto</td>
+<td>1</td>
+<td>6</td>
+<td>12</td>
+<td>1</td>
+<td>+3 · 1d4. Em bando (3+): +1 acerto.</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Capanga</td>
+<td>1</td>
+<td>12</td>
+<td>13</td>
+<td>2</td>
+<td>+4 · 1d6+2 · 1 ação/ataque. Foge a ≤3 PV.</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Lobo</td>
+<td>1</td>
+<td>16</td>
+<td>13</td>
+<td>2</td>
+<td>+4 · 1d6+2. Acerto: alvo TDD FOR CD 12 ou Caído.</td>
+<td>75</td>
+</tr>
+<tr>
+<td>Bandido arqueiro</td>
+<td>2</td>
+<td>14</td>
+<td>14</td>
+<td>2</td>
+<td>+5 · 1d6+2 (distância 8 grid). Prefere cobertura.</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Cultista</td>
+<td>2</td>
+<td>20</td>
+<td>13</td>
+<td>2</td>
+<td>Adaga +4 · 1d4+1 · ou magia +4 · 1d6+2 (1 ação + 1 PM; pool 3 PM).</td>
+<td>120</td>
+</tr>
+<tr>
+<td>Espectro fraco</td>
+<td>2</td>
+<td>18</td>
+<td>12</td>
+<td>2</td>
+<td>Toque +4 · 1d6+2 necrótico. 1×/combate: medo (CAR CD 12) — Hesitante 1 rodada. Resistência a físico não-mágico.</td>
+<td>150</td>
+</tr>
+<tr>
+<td>Elemental menor</td>
+<td>3</td>
+<td>28</td>
+<td>14</td>
+<td>3</td>
+<td>+5 · 1d8+2. 1×/turno: rajada 1 grid adjacentes, metade do dano (DES pela metade).</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Capitão da Guarda</td>
+<td>3</td>
+<td>36</td>
+<td>16</td>
+<td>4</td>
+<td>+6 · 1d8+3. 1×/combate: grito — aliados Capanga +1 acerto 1 rodada. AO (1 resposta/rodada, sem custo de ação).</td>
+<td>300</td>
+</tr>
+<tr>
+<td>Assassino novato</td>
+<td>3</td>
+<td>22</td>
+<td>15</td>
+<td>3</td>
+<td>+6 · 1d6+3. Se atacar de furtividade: +1d6. Pode Desengajar por 1 ação (1×/turno).</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Golem de sucata</td>
+<td>3</td>
+<td>40</td>
+<td>15</td>
+<td>2</td>
+<td>+5 · 1d10+2. Lento (deslocamento 3). Imune a veneno/medo. Frágil a crítico: crítico causa +1d8.</td>
+<td>350</td>
+</tr>
+</tbody>
+</table>
+<h1 class="chapter-title"><span class="chap-label">APÊNDICE C</span>KIT ONE-SHOT (PLAYTEST)</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<p>3 fichas nv3 · inimigos do Bestiário · 3 cenas — ~3–4 horas.</p>
+<h2>Personagens prontos (nv 3)</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Foco</th>
+<th>Attrs (FOR/DES/CON/INT/SAB/CAR)</th>
+<th>Raízes</th>
+<th>Stats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ryn</td>
+<td>Corpo + Trilha</td>
+<td>3 / 4 / 2 / 0 / 1 / 0 (11 pts)</td>
+<td>Duelista, Sombra</td>
+<td>PV 24 · 3 ações · CA 15 (couro+1) · Prof +2 · Geral: Iniciativa Aguçada</td>
+</tr>
+<tr>
+<td>Sera</td>
+<td>Insight + Voz</td>
+<td>0 / 0 / 2 / 2 / 3 / 4 (12 pts)</td>
+<td>Leitura, Elo</td>
+<td>PV 24 · 3 ações · PM 6 (INT×3) · CA 11 · Prof +2 · Geral: Língua Afiada</td>
+</tr>
+<tr>
+<td>Tor</td>
+<td>Guarda + Precisão</td>
+<td>2 / 2 / 4 / 0 / 3 / 0 (12 pts)</td>
+<td>Muralha, Rastreador</td>
+<td>PV 32 · 3 ações · CA 14 (média +3, DES 2 com −1) · Prof +2 · Geral: Sobrevivente</td>
+</tr>
+</tbody>
+</table>
+<div class="nota">
+
+Cada um também pegou 1 upgrade de domínio no nv3 (ex.: Ryn → Ataque Furtivo; Sera → Negociação; Tor → Vigília). Ajuste à mesa.
+
+</div>
+
+<h2>Inimigos</h2>
+<p>Use as fichas do Bestiário: <strong>4× Capanga</strong> (50 XP cada) + <strong>1× Capitão da Guarda</strong> (300 XP). Total do combate: <strong>500 XP</strong> (dividir pelo grupo se usar XP).</p>
+<h2>Três cenas</h2>
+<ol>
+<li><strong>Almas</strong> — Negociar passagem no portão (Capitão). CD CAR/SAB 14; falha → combate ou suborno caro.</li>
+<li><strong>Mundo</strong> — Seguir rastros até o armazém (Rastreador/Investigação). CD 14; sucesso: emboscada invertida (vantagem no 1º turno).</li>
+<li><strong>Combate</strong> — 4 Capangas + Capitão no grid 8×8. Objetivo: capturar ou matar o Capitão. Testa combo, AO, queda a 0 PV.</li>
+</ol>
+<p>Após a cena 2: 1 descanso curto. Anote o que atrapalhou a mesa e ajuste.</p>
+<h1 class="chapter-title"><span class="chap-label">APÊNDICE D</span>GLOSSÁRIO</h1>
+<img class="ornament" src="file:///C:/Users/arthur.gabryel/Projetos/sistema-das-almas/livro-do-jogador/images/ornamento-capitulo.png" alt=""/>
+
+<table>
+<thead>
+<tr>
+<th>Termo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ação</strong></td>
+<td>Recurso do seu turno (combate) ou da cena (fora dele). Ataques e habilidades de turno custam ações; respostas fora do turno não.</td>
+</tr>
+<tr>
+<td><strong>Afinidade</strong></td>
+<td>+2 em testes de um domínio fora de combate, se você tiver a Raiz desse domínio.</td>
+</tr>
+<tr>
+<td><strong>AO</strong></td>
+<td>Ataque de Oportunidade — resposta (−2 acerto) quando alguém sai do seu corpo a corpo sem desengajar. Sem custo de ação.</td>
+</tr>
+<tr>
+<td><strong>CA</strong></td>
+<td>Classe de Armadura. Base 10 + DES + armadura + escudo (+ outros bônus).</td>
+</tr>
+<tr>
+<td><strong>CD</strong></td>
+<td>Classe de Dificuldade do teste ou TDD.</td>
+</tr>
+<tr>
+<td><strong>Cena</strong></td>
+<td>Unidade narrativa fora de combate definida pelo mestre; regenera o pool de ações.</td>
+</tr>
+<tr>
+<td><strong>Combo</strong></td>
+<td>Barra de slots enchida por acertos; gasta-se num Finalizador.</td>
+</tr>
+<tr>
+<td><strong>Concentração</strong></td>
+<td>Estado que mantém certos efeitos; cai com atordoamento, falha em TDD CON ao tomar dano, ou novo efeito de Concentração.</td>
+</tr>
+<tr>
+<td><strong>Domínio</strong></td>
+<td>Um dos 8 eixos de Perícia Viva (Corpo, Precisão, Arcana, Guarda, Trilha, Insight, Voz, Ofício).</td>
+</tr>
+<tr>
+<td><strong>Fork</strong></td>
+<td>Caminho paralelo na árvore; comprar um não bloqueia os outros.</td>
+</tr>
+<tr>
+<td><strong>Grid</strong></td>
+<td>Quadrado do tabuleiro; movimento = <strong>3 + ⌊DES/2⌋</strong> grid por turno.</td>
+</tr>
+<tr>
+<td><strong>PD</strong></td>
+<td>Ponto de Disciplina — 1 por nível (após o 1º) para comprar nó ou nova Raiz.</td>
+</tr>
+<tr>
+<td><strong>PM</strong></td>
+<td>Pontos de Magia — INT × 3.</td>
+</tr>
+<tr>
+<td><strong>Proficiência</strong></td>
+<td>Bônus por nível: <code>1 + ⌊(nível − 1) / 2⌋</code> (+1 no nv1–2 … +10 no nv19–20), em ataques e testes com Raiz.</td>
+</tr>
+<tr>
+<td><strong>PV</strong></td>
+<td>Pontos de Vida. A 0 PV o personagem cai; tem 1 rodada para receber cura ou morre.</td>
+</tr>
+<tr>
+<td><strong>Raiz</strong></td>
+<td>Primeiro nó de um ramo; concede afinidade e acesso à árvore.</td>
+</tr>
+<tr>
+<td><strong>Reservada</strong></td>
+<td>Ação não gasta no fim do turno, usada só para efeitos como Muralha.</td>
+</tr>
+<tr>
+<td><strong>Resposta</strong></td>
+<td>1×/rodada fora do seu turno (AO, bloqueio, esquiva…). Não gasta ações; pode custar PM.</td>
+</tr>
+<tr>
+<td><strong>TDD</strong></td>
+<td>Teste de Dificuldade / teste de resistência: d20 + atributo vs CD.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>✦ <strong>Sistema das Almas</strong> · Alpha · Playtest · +1 PD/nível · 32 caminhos</p>
+<p><em>Texto de regras baseado na documentação Alpha do sistema. Layout inspirado na hierarquia de um livro do jogador clássico — conteúdo original.</em></p>
+</div>
+</body>
+</html>
